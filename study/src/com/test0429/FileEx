@@ -1,0 +1,10 @@
+-작성 클래스
+FileServer(서버)
+FileClient(클라이언트)
+
+-FileServer 프로그램이 실행 된 상태에서
+ FileClient 프로그램을 실행 하면
+ FileClient 는 FileServer(서버)에 접속하여 파일을 다운
+ 받는 프로그램을 작성한다. 파일은 서버에 존재하는
+ 임의의 파일을 전송하는 형식으로 작성한다.
+
