@@ -7,7 +7,8 @@
 <%
 DataSource ds=null;
 Connection conn = null;
-PreparedStatement pstmt=null;
+//PreparedStatement pstmt=null;
+CallableStatement pstmt=null;
 try{
 	// 톰캣 설정파일 context.xml에서 dbcp 정보를 읽어옴
 	Context context = new InitialContext(); 
@@ -16,9 +17,11 @@ try{
 	ds = (DataSource)context.lookup("java:comp/env/jdbc/OracleDB");
 	// db connection open
 	conn = ds.getConnection();
-	String sql = "update memo set writer=?, memo=?, post_date=sysdate where idx=?";
+	//String sql = "update memo set writer=?, memo=?, post_date=sysdate where idx=?";
+	String sql = "{call memo_update(?,?,?)}";
 	// sql 구문을 실행할 statement 객체 생성
-	pstmt = conn.prepareStatement(sql);
+	//pstmt = conn.prepareStatement(sql);
+	pstmt = conn.prepareCall(sql);
 	// 물음표 자리에 들어갈 파라미터값을 연결시켜 줌(매핑작업)
 	request.setCharacterEncoding("utf-8"); //한글 인코딩 설정
 // statement객체.set자료형( 물음표위치, 물음표에 대입할 값 )	
@@ -26,7 +29,8 @@ try{
 	pstmt.setString(2, request.getParameter("memo"));
 	pstmt.setInt(3, Integer.parseInt( request.getParameter("idx")));
 	// update query 실행
-	pstmt.executeUpdate();
+	//pstmt.executeUpdate();
+	pstmt.execute();
 	// 페이지 이동
 	response.sendRedirect("memo_list.jsp");
 }catch(Exception e){
