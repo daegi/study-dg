@@ -34,7 +34,7 @@
 			 sql.append(" ( memo_seq.nextval , ?, ? )");
 			 stmt = conn.prepareStatement(sql.toString());
 			 */
-			 // call 프로시저이름(매개변수)
+			// call 프로시저이름(매개변수)
 			sql.append("{call memo_insert(?,?) }");
 			stmt = conn.prepareCall(sql.toString());
 			// stmt.set자료형( 물음표순서, 입력할 값 )  

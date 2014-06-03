@@ -12,7 +12,8 @@ DataSource ds=null; // DB소스(DBCP)
 // DataBase Connection Pool
 // context.xml
 Connection conn=null; // DB접속처리
-PreparedStatement pstmt = null; // SQL문장을 실행 요청
+//PreparedStatement pstmt = null; // SQL문장을 실행 요청
+CallableStatement pstmt = null;
 try{
 	// context.xml에 설정된 DBCP 정보를 읽는 코드
 	Context context = new InitialContext();
@@ -27,15 +28,18 @@ try{
 // String
 // StringBuilder
 	StringBuilder sql = new StringBuilder();
-	sql.append( "insert into board ");
+/* 	sql.append( "insert into board ");
 	sql.append("(idx,name,subject,content) values");
 	sql.append( "( (select nvl( max(idx)+1, 1 ) from");
-	sql.append("board),?,?,?) ");
-	pstmt = conn.prepareStatement(sql.toString());
+	sql.append("board),?,?,?) "); */
+	sql.append("{call board_insert(?,?,?)}");
+	//pstmt = conn.prepareStatement(sql.toString());
+	pstmt = conn.prepareCall(sql.toString()); 
 	pstmt.setString(1, request.getParameter("name"));
 	pstmt.setString(2, request.getParameter("subject"));
 	pstmt.setString(3, request.getParameter("content"));
-	pstmt.executeUpdate();
+	//pstmt.executeUpdate();
+	pstmt.execute();
 	response.sendRedirect("board_list.jsp");
 }catch(Exception e){
 	e.printStackTrace();
