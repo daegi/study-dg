@@ -44,14 +44,20 @@ function comment_write() {
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="javax.naming.*" %>   
+<%@ page import="oracle.jdbc.*" %>
+<%@ page import="java.math.BigDecimal" %>  
 <%
 request.setCharacterEncoding("utf-8"); //한글 인코딩 방식 설정
 DataSource ds=null;
 Connection conn=null;
-PreparedStatement pstmt = null, pstmt_view=null;
+//PreparedStatement pstmt = null, pstmt_view=null;
+CallableStatement pstmt = null;
 ResultSet rs = null;
 //댓글 목록 출력을 위한 객체 선언
-PreparedStatement pstmt_count=null, pstmt_list=null;
+//PreparedStatement pstmt_count=null, pstmt_list=null;
+CallableStatement pstmt_count = null;
+//PreparedStatement pstmt_list=null;
+CallableStatement pstmt_list = null;
 ResultSet rs_count=null, rs_list=null;
 
 int hit = 0;
@@ -61,7 +67,7 @@ try{
 	ds = (DataSource)context.lookup("java:comp/env/jdbc/OracleDB");
 	conn = ds.getConnection();
 	//조회수 증가 쿼리 실행
-	String sql = "update board set hit=hit+1 where idx=?";
+/* 	String sql = "update board set hit=hit+1 where idx=?";
 	pstmt = conn.prepareStatement(sql);
 	pstmt.setString(1, request.getParameter("idx"));
 	pstmt.executeUpdate();
@@ -69,7 +75,16 @@ try{
 	sql = "select * from board where idx=?";
 	pstmt_view = conn.prepareStatement(sql);
 	pstmt_view.setString(1, request.getParameter("idx"));
-	rs = pstmt_view.executeQuery();
+	rs = pstmt_view.executeQuery(); */ 
+	String sql = "{call board_detail(?,?)}";
+	pstmt = conn.prepareCall(sql);
+	pstmt.setString(1, request.getParameter("idx"));
+	// out 매개변수의 타입을 커서 타입으로 지정
+	pstmt.registerOutParameter(2, OracleTypes.CURSOR);
+	pstmt.execute(); 
+	// 커서 타입의 객체를 ResultSet 타입으로 변환
+	rs = (ResultSet)pstmt.getObject(2);
+	
 	if( rs.next() ) {
 		name = rs.getString("name");
 		subject = rs.getString("subject");
@@ -147,14 +162,26 @@ try{
 </table>
 </form>
 <%
-sql = "select count(*) from board_comment where board_idx=?";
+/* sql = "select count(*) from board_comment where board_idx=?";
 pstmt_count = conn.prepareStatement(sql);
-pstmt_count.setString(1, request.getParameter("idx"));
 rs_count = pstmt_count.executeQuery();
 int count=0;
 if( rs_count.next() ) {
 	count = rs_count.getInt(1);
-}
+}  
+*/
+sql = "{call comment_count(?,?)}";
+pstmt_count = conn.prepareCall(sql);
+//pstmt_count.setString(1, request.getParameter("idx"));
+pstmt_count.setInt(
+	1, Integer.parseInt(request.getParameter("idx")));
+pstmt_count.registerOutParameter(2, OracleTypes.NUMBER);
+pstmt_count.execute();
+// Number => 10의 38승
+BigDecimal temp = (BigDecimal)pstmt_count.getObject(2);
+// BigDecimal => int로 변환
+int count = temp.intValue();
+
 if( count > 0 ){ //댓글 갯수가 0보다 크면 댓글 목록을 출력함
 %>
 <table border="1" style="width:600px">
@@ -165,11 +192,16 @@ if( count > 0 ){ //댓글 갯수가 0보다 크면 댓글 목록을 출력함
 	</tr>
 <%	
 	//댓글 목록 출력
-	sql = "select * from board_comment 	where board_idx=? "
-			+" order by idx desc";
-	pstmt_list = conn.prepareStatement(sql);
+/* 	sql = "select * from board_comment 	where board_idx=? "
+			+" order by idx desc"; */
+	sql = "{call comment_list(?,?)}";
+	//pstmt_list = conn.prepareStatement(sql);
+	pstmt_list = conn.prepareCall(sql);
 	pstmt_list.setString(1, request.getParameter("idx"));
-	rs_list = pstmt_list.executeQuery(); 
+	pstmt_list.registerOutParameter(2, OracleTypes.CURSOR);
+	//rs_list = pstmt_list.executeQuery();
+	pstmt_list.execute();
+	rs_list = (ResultSet)pstmt_list.getObject(2);
 	//댓글 목록
 	while( rs_list.next() ) {
 		int c_idx = rs_list.getInt("idx");
@@ -207,7 +239,7 @@ if( count > 0 ){ //댓글 갯수가 0보다 크면 댓글 목록을 출력함
 		if( rs_list != null ) rs_list.close();
 		if( pstmt_count != null ) pstmt_count.close();
 		if( pstmt_list != null ) pstmt_list.close();
-		if( pstmt_view != null ) pstmt_view.close();
+		//if( pstmt_view != null ) pstmt_view.close();
 		if( pstmt != null ) pstmt.close();
 		if( conn != null ) conn.close();
 	}catch(Exception e){
