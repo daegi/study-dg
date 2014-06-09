@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+$(document).ready( function(){  // onload 이벤트
+	$("#btnSelect").click( function(){  // 버튼클릭이벤트
+		var checkedList="";
+		$("input[name='hobby']:checked").each(function(){
+			checkedList += $(this).next().text() + "\t";
+		});
+		// var result = document.getElementById("result");
+		// result.innerHTML = checkList;
+		$("#result").html(checkedList); // result 태그의 innerHTML에 복사
+	});
+});
+</script>
+</head>
+<body>
+<h2>체크박스 활용</h2>
+* 취미를 선택하세요<br>
+<input type="checkbox" name="hobby"  value="music" /><span>음악감상</span>
+<input type="checkbox" name="hobby"  value="reading" /><span>독서</span>
+<input type="checkbox" name="hobby"  value="sports" /><span>스포츠</span>
+<input type="button"  id="btnSelect"  value="확인"  />
+<br>
+* 결과
+<div id="result"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

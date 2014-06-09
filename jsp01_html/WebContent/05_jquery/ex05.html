@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() { // onload 이벤트
+		$("#category a").click(function(e) { //onclick 이벤트
+			e.preventDefault();
+			var category = $(this).attr("title");
+			$("#newslist li").fadeOut("slow"); //천천히 사라짐
+			if (category == "all") {
+				$("#newslist li").fadeIn("slow"); //천천히 표시
+			} else {
+				// class=키워드   ==> 완전히 일치하는 키워드
+				// class*=키워드 ==> 부분검색(sql의 like 와 비슷한 구문)
+				$("#newslist li[class*=" + category + "]").fadeIn("slow");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>필터 기능</h2>
+	<div id="wrap">
+		<div id="category">
+			<h3>카테고리</h3>
+			<ul>
+				<li><a href="#" title="all">전체기사</a></li>
+				<li><a href="#" title="eco">경제/금융</a></li>
+				<li><a href="#" title="soc">사회</a></li>
+				<li><a href="#" title="star">연예</a></li>
+				<li><a href="#" title="sports">스포츠</a></li>
+			</ul>
+		</div>
+		<div id="newslist">
+			<h3>뉴스 목록</h3>
+			<ul>
+				<li class="eco"><a href="#">경제/금융뉴스1</a></li>
+				<li class="eco"><a href="#">경제/금융뉴스2</a></li>
+				<li class="eco"><a href="#">경제/금융뉴스3</a></li>
+				<li class="soc"><a href="#">사회뉴스1</a></li>
+				<li class="soc"><a href="#">사회뉴스2</a></li>
+				<li class="soc"><a href="#">사회뉴스3</a></li>
+				<li class="star"><a href="#">연예뉴스1</a></li>
+				<li class="star"><a href="#">연예뉴스2</a></li>
+				<li class="sports"><a href="#">스포츠뉴스1</a></li>
+				<li class="eco_star"><a href="#">경제/연예뉴스1</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

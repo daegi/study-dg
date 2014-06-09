@@ -1,0 +1,23 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>해상도 계산</title>
+<script type="text/javascript">
+// screen 내장객체, 화면 사이즈, 좌표 등의 정보 제공
+document.write( "해상도:"+ screen.width+"x"+screen.height );
+if( screen.width >= 1024 ) { // 가로길이가 1024 이상이면 index1.html로 이동
+// location.href = "이동할 주소";	
+	location.href = "index1.html";
+}else{ //그렇지 않으면 index2.html로 이동
+	location.href = "index2.html";
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+

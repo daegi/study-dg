@@ -1,0 +1,49 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>InnerHTML</title>
+<script type="text/javascript">
+function imgView(){
+	var img = document.getElementById("img"	);
+	var div1 = document.getElementById("div1");
+// div 태그의 innerHTML 영역에 선택한 이미지를 출력	
+	div1.innerHTML = "<img src="+ img.value +">";
+}
+</script>
+</head>
+<body>
+<!-- InnerHTML 태그 내부의 html텍스트
+<div>test</div>
+ -->
+ <table width="400px"  bgcolor="orange">
+<!-- valign : 세로 정렬 방식(top, middle, bottom) --> 
+	<tr align="center" valign="middle">
+		<td width="150px" bgcolor="gold">
+			*그림을 선택하세요<br>
+			<select name="img" id="img" size="4" onchange="javascript:imgView()">
+				<option value="../images/i0073.gif">행이</option>
+				<option value="../images/i0074.gif">복이</option>
+				<option value="../images/i0075.gif">왕</option>
+				<option value="../images/i0076.gif">왕비</option>
+			</select>
+		</td>
+		<td bgcolor="white">
+			<div id="div1"><img src="../images/i0073.gif"></div>
+		</td>
+	</tr> 
+ </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

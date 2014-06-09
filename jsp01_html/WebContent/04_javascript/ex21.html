@@ -1,0 +1,29 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>폼객체</title>
+</head>
+<!-- 폼태그.focus()  포커스를 설정  -->
+<body onload="document.getElementById('name').focus();">
+	<form name="form1" id="form1" method="post">
+		이름 : <input type="text" name="name" id="name" /><br> 주소 : <input
+			type="text" name="address" id="address" />
+	</form>
+	<input type="button" value="주소 필드로 포커스 이동"
+		onclick="document.getElementById('address').focus()" />
+	<input type="button" value="이름 필드로 포커스 이동"
+		onclick="document.getElementById('name').focus()" />
+	<input type="button" value="주소 필드의 내용 선택"
+		onclick="document.getElementById('address').select()" />
+</body>
+</html>
+
+
+
+
+
+
+
+

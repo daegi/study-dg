@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() { // 웹문서가 로드되면(onload이벤트)
+		$("#menu h3").click(function() {
+			$("#content").toggle("slow");
+		});
+
+	});
+</script>
+</head>
+<body>
+	<h2>펼침/숨김 목록</h2>
+	<div id="menu">
+		<h3>
+			<a href="#">클릭하세요</a>
+		</h3>
+		<p id="content">
+			<img src="../images/cloud640.jpg" />
+		</p>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

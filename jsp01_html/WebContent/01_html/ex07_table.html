@@ -1,0 +1,53 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>표 그리기</title>
+</head>
+<body>
+	<h2>표 그리기</h2>
+	<!-- border를 지정하지 않으면 테두리가  보이지 않음 -->
+	<table border="1px" width="500px">
+		<caption>주소록</caption>
+		<!-- 테이블의 헤더 -->
+		<thead style="background: green">
+			<!-- Table Row  테이블의 행 -->
+			<!-- Table Header 테이블의 제목셀 (Bold, 가운데정렬) -->
+			<tr>
+				<th>이름</th>
+				<th>전화</th>
+				<th>이메일</th>
+			</tr>
+		</thead>
+		<!-- 테이블 body의 셀에 적용(하위셀들에 적용됨) -->
+		<colgroup>
+			<col style="background: blue" />
+		</colgroup>
+		<tr align="center">
+			<td>홍길동</td>
+			<!--  Table Division 테이블의 셀 -->
+			<td>010-555-3333</td>
+			<td>hong@naver.com</td>
+		</tr>
+		<tr align="center">
+			<td>마이클</td>
+			<!--  Table Division 테이블의 셀 -->
+			<td>010-333-5555</td>
+			<td>michael@naver.com</td>
+		</tr>
+		<!-- 테이블의 하단부 -->
+		<tfoot style="background: yellow">
+			<tr align="center">
+				<td>합계</td>
+				<td colspan="2">2명</td>
+				<!-- colspan 셀 합치기 -->
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>
+
+
+
+

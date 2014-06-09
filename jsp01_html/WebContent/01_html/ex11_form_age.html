@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<!--<script language="javascript">  -->
+<script type="text/javascript">
+function check(){
+	//태그를 id로 검색하여 변수에 저장
+	var form1 = document.getElementById("form1");
+	var name = document.getElementById("name");
+	var birth = document.getElementById("birth");
+	//빈값 체크
+	if( name.value == "" ) {
+		alert("이름을 입력하세요");
+		name.focus();
+		return;
+	}
+	if( birth.value == "" ) {
+		alert("출생연도를 입력하세요");
+		birth.focus();
+		return;
+	}	
+	// 폼데이터를 서버에 전송
+	form1.action = "age.jsp";
+	form1.submit();
+}
+</script>
+</head>
+<body>
+<h2>나이 계산</h2>
+<form name="form1" id="form1" method="post" action="age.jsp">
+이름 <input type="text" name="name" id="name" /><br>
+출생년도 <input type="text" name="birth" id="birth" /><br>
+ <input type="button" value="확인"  onclick="check()"/>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>웹문서의 정보(document객체)</title>
+<script type="text/javascript">
+document.write("최종수정일자:"+document.lastModified+"<br>");
+document.write("현재 문서의 url : "+ document.URL +"<br>");
+document.write("웹문서의 제목:"+ document.title);
+function change(){
+	var title = document.getElementById("title");
+	document.title = title.value;
+}
+</script>
+</head>
+<body>
+<form name="form1" id="form1" method="post">
+제목 : <input type="text" name="title" id="title" />
+<input type="button" value="제목 변경" onclick="change()"/>
+</form>
+</body>
+</html>
+
+
+
+
+

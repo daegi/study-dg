@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>글자수 확인</title>
+<script type="text/javascript">
+function clearText(obj){
+// 태그.defaultValue  기본값, <input type="text" value="기본값" />	
+	if( obj.defaultValue == obj.value ) { // 기본값과 같은 내용이면 클리어시킴
+		obj.value = "";
+	}
+}
+function checkPw(){
+	var passwd = document.getElementById("passwd");
+	if( passwd.value == "" ) {
+		alert("비밀번호를 입력하세요");
+		passwd.focus();
+		return;
+	}
+	var len = passwd.value.length; //입력한 글자수
+	if( len < 4 || len > 8 ) { //4~8자 입력가능
+		alert("비밀번호는 4~8자로 입력가능합니다.");
+		passwd.focus();
+		return;
+	}
+}
+</script>
+</head>
+<body>
+<form name="form1" id="form1" method="post">
+아이디 : <input type="text" name="userid" id="userid" 
+	value="아이디를 입력하세요" onfocus="clearText(this)" /><br>
+<!-- onblur   포커스를 잃을 때 , onfocus 포커스를 얻을 때 -->	
+비밀번호 : <input type="password" name="passwd" id="passwd" 
+	onblur="checkPw()" />	 
+<input type="button" value="확인" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+

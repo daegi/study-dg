@@ -1,0 +1,58 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>회원가입</h2>
+	<form action="join.jsp" method="post">
+		<table border="1px" width="350px">
+			<tr align="center">
+				<td>아이디</td>
+				<td><input type="text" name="userid" id="userid" /></td>
+			</tr>
+			<tr align="center">
+				<td>비번</td>
+				<td><input type="password" name="passwd" id="passwd" /></td>
+			</tr>
+			<tr align="center">
+				<td>주민번호</td>
+				<td>
+					<input type="text" name="jumin1" id="jumin1" maxlength="6" size="10" />
+					-
+					<input type="text" name="jumin2" id="jumin2" maxlength="7" size="10" />
+				</td>
+			</tr>
+			<tr align="center">
+				<td>전화</td>
+				<td>
+					<select name="tel1" id="tel1">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>
+					<input type="text" name="tel2" id="tel2" size="10" maxlength="4" />
+					-
+					<input type="text" name="tel3" id="tel3" size="10" maxlength="4" />
+				</td>
+			</tr>
+			<tr align="center">
+				<td>성별</td>
+				<td>
+					<input type="radio" name="gender"  value="남" />남자
+					<input type="radio" name="gender"  value="여" />여자
+				</td>
+			</tr>
+			<tr align="center">
+				<td colspan="2">
+					<input type="submit" value="확인" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

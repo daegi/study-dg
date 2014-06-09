@@ -1,0 +1,25 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<script type="text/javascript">
+// 자바스크립트는 자료형이 없음(가변자료형)
+var myvar = "전역변수"; // var 생략가능
+function test(){
+	var myvar = "지역변수";
+	document.write( myvar +"<br>"); // 지역변수가 출력됨
+	document.write( this.myvar +"<br>"); // this.전역변수(크롬)
+}
+</script>
+</head>
+<!-- 웹문서가 로드되었으면 test() 함수 호출 
+자바스크립트 함수는 호출해야 실행 가능
+-->
+<body onload="test()"> 
+
+</body>
+</html>
+
+

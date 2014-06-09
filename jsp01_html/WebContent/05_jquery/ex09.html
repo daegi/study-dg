@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="../include/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("img").bind({
+			mouseout : function() {
+				$("img").attr("src", "../images/i0075.gif");
+			},
+			mouseover : function() {
+				$("img").attr("src", "../images/i0076.gif");
+			},
+			click : function() {
+				$("img").attr("src", "../images/i0073.gif");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<img src="../images/i0075.gif" />
+	<!--	<img src="../images/i0076.gif" />-->
+</body>
+</html>
+
+
+

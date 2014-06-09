@@ -1,0 +1,24 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>타이머 제어</title>
+<script type="text/javascript">
+function startTimer(){
+	alert("이 창은 5초마다 나타납니다.");
+// 타이머객체 = setTimeout("호출할 함수", 호출간격);  타이머 설정	
+	timer = setTimeout("startTimer()", 5000);	
+}
+function stopTimer(){
+	clearTimeout(timer); // clearTimeout(타이머객체) 타이머를 초기화시킴
+}
+</script>
+</head>
+<body background="../images/bg29.gif">
+	<input type="button" value="타이머 시작" onclick="startTimer()"/>
+	<input type="button" value="타이머 멈춤" onclick="stopTimer()"/>
+</body>
+</html>
+
+

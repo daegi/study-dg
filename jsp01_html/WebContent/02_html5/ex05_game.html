@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스</title>
+<script type="text/javascript">
+//전역변수 선언
+var boxX = 20;	//테두리 박스의 x좌표
+var boxY = 30; // 테두리 박스의 y좌표
+var boxWidth = 350; // 테두리의 가로길이
+var boxHeight = 250; // 테두리의 세로길이
+var ballR = 10; // 공의 반지름
+var boxBoundX = boxWidth + boxX - ballR*2; //박스의 오른쪽벽
+var boxBoundY = boxHeight + boxY - ballR*2; //박스의 아래벽
+var inboxBoundX = boxX + ballR*2;
+var inboxBoundY = boxY + ballR*2;
+var ballX = 50; //공의 x좌표
+var ballY = 60; //공의 y좌표
+var context; // 컨텍스트(그래픽을 그려줄 화면)
+var moveX = 4; // x축으로 이동할 크기
+var moveY = 8; // y축으로 이동할 크기
+
+function init(){
+//캔버스에 2d 그래픽을 그려주기 위한 컨텍스트 객체 생성	
+	context = document.getElementById("canvas").getContext("2d");
+	
+	context.lineWidth = ballR;//컨텍스트의 선굵기 지정
+	context.fillStyle="rgb(200,0,50)"; //색상코드 선택
+	moveBall(); //공을 움직이는 함수
+	setInterval(moveBall, 100); //setInterval(반복할 함수이름, 간격) 타이머 등록 
+}
+function moveBall(){
+	context.clearRect(boxX, boxY, boxWidth, boxHeight); //그림을 지움
+	moveAndCheck();
+	context.beginPath();
+// x좌표, y좌표, 반지름, 시작각도, 끝각도, 그리기방향	
+	//context.arc( ballX, ballY, ballR, 0, Math.PI*2, true); //공 그리기
+//이미지 그리기
+	var img=new Image();
+	img.src = "../images/pearl.jpg";
+	context.drawImage(img, ballX-ballR,ballY-ballR,2*ballR,2*ballR);
+	context.fill(); // 색상을 채움
+	context.strokeRect( boxX, boxY, boxWidth, boxHeight ); //테두리 그리기
+}
+function moveAndCheck(){
+	ballX = ballX + moveX;
+	//오른쪽 벽에 맞았을 때 => moveX를 -moveX로 만들어줌
+	if( ballX >= boxBoundX ) {
+		moveX = -moveX;	
+	}
+	//왼쪽 벽에 맞았을 때  => moveX를 -moveX로 만들어줌
+	if( ballX <= inboxBoundX ){
+		moveX = -moveX;
+	}
+	ballY = ballY + moveY;
+	// 아래 벽에 맞았을 때
+	if( ballY >= boxBoundY ){
+		moveY = -moveY;
+	}
+	// 위 벽에 맞았을 때
+	if( ballY <= inboxBoundY ){
+		moveY = -moveY;
+	}
+}
+function change(){
+// 폼에서 넘어온 값은 String으로 처리되므로 숫자로 변환해 주어야 함
+// Number( 값 ) => 숫자로 변환
+// parseInt(값) => 정수로 변환
+//alert(typeof(document.getElementById("hSpeed").value));
+//alert(typeof(Number(document.getElementById("hSpeed").value)));
+//moveX = document.getElementById("hSpeed").value;
+//moveY = document.getElementById("vSpeed").value;
+	moveX = Number(document.getElementById("hSpeed").value);
+	moveY = Number(document.getElementById("vSpeed").value);
+	//moveX = parseInt(document.getElementById("hSpeed").value);
+	//moveY = parseInt(document.getElementById("vSpeed").value);	
+}
+</script>
+</head>
+<body onload="init()">
+<canvas id="canvas" width="400" height="300">
+<!-- html5를 지원하지 않는 브라우저의 경우 텍스트가 출력됨 -->
+	이 브라우저에서는 html5의 canvas 요소가 지원되지 않습니다.
+</canvas>
+<form name="f" id="f">
+x의 속도 : <input type="number" name="hSpeed" id="hSpeed" value="4"
+					min="-10" max="10" size="8"/>
+y의 속도 : <input type="number" name="vSpeed" id="vSpeed" value="8"
+					min="-10" max="10" size="8"/>
+<input type="button" value="변경" onclick="change()"/>					
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

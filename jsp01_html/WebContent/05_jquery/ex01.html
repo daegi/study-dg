@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+	// 달러(태그 또는 객체) ==> 태그, 객체를 선택하라는 의미(선택자)  
+	$(document).ready(function() { //웹페이지가 로드되면
+		$("#hello").click(function() { // id가 hello인 태그를 클릭할 때
+			$(this).hide(); // 화면에서 숨김
+		});
+	});
+</script>
+</head>
+<body>
+<!-- jquery 다운로드 사이트 : http://jquery.com -->
+	<h2>hello jquery</h2>
+	<div id="hello">
+		Hello jquery<br> <img src="../images/clock.gif" />
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

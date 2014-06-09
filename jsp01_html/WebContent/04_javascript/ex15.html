@@ -1,0 +1,31 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>팝업창 만들기</title>
+<script type="text/javascript">
+function openWin(){
+//window.open( 'url', '팝업창의 이름', '옵션' );
+//window.close() 창닫기
+//left=x좌표, top=y좌표, width=가로길이, height=세로길이
+	var msg = document.getElementById("msg");
+	var url = "tree.jsp?msg="+ msg.value;
+	window.open( url , "","left=200,top=100,width=350,height=300" );
+// menubar=yes/no, scrollbars=yes/no, resizable=yes/no	
+}
+</script>
+</head>
+<body background="../images/xmas1.gif">
+<input type="button" value="팝업창 열기" onclick="javascript:openWin()" />
+<form name="form1" id="form1" method="post">
+	입력하세요
+	<input type="text" id="msg" name="msg" />
+</form>
+</body>
+</html>
+
+
+
+
+
