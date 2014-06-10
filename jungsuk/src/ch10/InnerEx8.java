@@ -1,4 +1,4 @@
-package com.ch10;
+package ch10;
 
 import java.awt.Button;
 import java.awt.event.ActionEvent;

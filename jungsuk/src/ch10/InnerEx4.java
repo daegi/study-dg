@@ -1,4 +1,4 @@
-package com.ch10;
+package ch10;
 
 class Outer{
 	class InstanceInner{

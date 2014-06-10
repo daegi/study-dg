@@ -1,4 +1,4 @@
-package com.ch10;
+package ch10;
 
 public class InnerEx6 {
 
