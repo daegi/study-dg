@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function check(){
+	var name = document.getElementById("name");
+	if( name.value == "") {
+		alert("이름을 입력하세요");
+		name.focus();
+		return;
+	}
+	var birth = document.getElementById("birth");
+	if( birth.value == "") {
+		alert("출생연도를 입력하세요");
+		birth.focus();
+		return;
+	}	
+	document.getElementById("form1").submit();
+}
+</script>
+</head>
+<body>
+	<h2>나이 계산</h2>
+	<form id="form1" method="post" action="age.jsp">
+		이름 <input type="text" name="name" id="name"><br>
+		출생연도 <input type="text" name="birth" id="birth"><br>
+		<input type="button" value="확인" onclick="check()">
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

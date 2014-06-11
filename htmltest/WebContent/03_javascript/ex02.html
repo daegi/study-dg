@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function func1(){
+	document.bgColor='yellow';
+}
+function func2(){
+	document.bgColor='green';
+}
+</script>
+</head>
+<!-- 태그에서만 사용가능한 자바스크립트 - inline javascript
+페이지에서만 사용가능한 자바스크립트
+모든 페이지에서 사용가능한 자바스크립트 -->
+<body>
+	<h2>인라인 자바스크립트</h2>
+	<a href="http://nate.com" 
+		onmouseover="document.bgColor='red';"
+		onmouseout="document.bgColor='#ff9900';">
+		클릭하세요</a>
+	<br>
+	<a href="http://nate.com"
+		onmouseover="func1()"
+		onmouseout="func2()">클릭하세요</a>		
+</body>
+</html>
+
+
+
+
+
+
+
+
+

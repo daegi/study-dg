@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function viewDate(){
+	var now = new Date(); // 날짜 객체
+	now = now.toLocaleString(); //한국어 날짜 형식으로 변경
+	// document.getElementById("태그의 id")
+	var time = document.getElementById("time");
+	// 태그.innerHTML : 태그의 내부영역
+	time.innerHTML = now;
+	// window.setTimeout("함수이름", 호출간격) 
+	window.setTimeout("viewDate()", 1000); 
+}
+</script>
+</head>
+<!-- 페이지가 로딩완료되면 viewDate()를 실행함 -->
+<body onload="viewDate()">
+	<h2>타이머 호출</h2>
+	<div id="time" 
+	style="border: 2px solid red;">    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

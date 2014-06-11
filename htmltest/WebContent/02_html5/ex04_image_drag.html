@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 드래그</title>
+<script type="text/javascript">
+	function drag(target, e) {
+		e.dataTransfer.setData("Text", target.id);
+	}
+	function drop(target, e) {
+		var id = e.dataTransfer.getData("Text");
+		// target : div1, div2	
+		// appendChild - div 내부에 이미지 태그 추가
+		target.appendChild(document.getElementById(id));
+		//e.preventDefault(); //기본 기능을 막음
+	}
+</script>
+<style type="text/css">
+div#div1 {
+	border: 2px solid #ff0000;
+}
+
+div#div2 {
+	border: 2px solid #0000ff;
+}
+
+div {
+	width: 200px;
+	height: 150px;
+}
+</style>
+</head>
+<body>
+	<div id="div1" ondrop="drop(this, event)" ondragenter="return false;"
+		ondragover="return false;"></div>
+	<div id="div2" ondrop="drop(this, event)" ondragenter="return false;"
+		ondragover="return false;"></div>
+	<img src="../images/koala.jpg" draggable="true" id="img1"
+		ondragstart="drag(this,event)">
+</body>
+</html>
+
+
