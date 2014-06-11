@@ -1,11 +1,11 @@
 package ch12;
 
-public class ThireadEx18 {
+public class ThreadEx19 {
 
 	public static void main(String[] args) {
-		MyThreadEx18 th1 = new MyThreadEx18("*");
-		MyThreadEx18 th2 = new MyThreadEx18("**");
-		MyThreadEx18 th3 = new MyThreadEx18("***");
+		MyThreadEx19 th1 = new MyThreadEx19("*");
+		MyThreadEx19 th2 = new MyThreadEx19("**");
+		MyThreadEx19 th3 = new MyThreadEx19("***");
 
 		th1.start();
 		th2.start();
@@ -31,33 +31,38 @@ public class ThireadEx18 {
 
 }
 
-class MyThreadEx18 implements Runnable {
+class MyThreadEx19 implements Runnable {
 	boolean suspended = false;
 	boolean stopped = false;
 
 	Thread th;
 
-	MyThreadEx18(String name) {
+	MyThreadEx19(String name) {
 		th = new Thread(this, name);
 	}
 
 	public void run() {
+		String name = Thread.currentThread().getName();
+
 		while (!stopped) {
 			if (!suspended) {
-				System.out.println(Thread.currentThread().getName());
-
+				System.out.println(name);
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					System.out.println(name + " -interrupted");
 				}
+			} else {
+				Thread.yield();
 			}
 		}
-		System.out.println(Thread.currentThread().getName() + "- stopped");
+		System.out.println(name + "-stopped");
 	}
 
 	public void suspend() {
 		suspended = true;
+		th.interrupt();
+		System.out.println("interrupt() in suspend()");
 	}
 
 	public void resume() {
@@ -66,6 +71,8 @@ class MyThreadEx18 implements Runnable {
 
 	public void stop() {
 		stopped = true;
+		th.interrupt();
+		System.out.println("interrupt() in stop()");
 	}
 
 	public void start() {
