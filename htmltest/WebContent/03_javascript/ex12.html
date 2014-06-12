@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>해상도</title>
+<script type="text/javascript">
+	//screen 내장객체, 해상도, 좌표값 등을 제공하는 객체
+	document.write("해상도:" + screen.width + "X" + screen.height);
+	
+	if(screen.width <= 1024){
+		location.href = "page1.html";
+	}else{
+		location.href = "page2.html";
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

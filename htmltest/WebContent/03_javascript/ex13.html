@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>팝업창 열기</title>
+<script type="text/javascript">
+function openWin(){
+// window.open( "url", "id", "option")
+// left, top, right, bottom
+//document.getElementById( "태그의 id");
+	var msg = document.getElementById("msg");
+// url?변수=값  ( 쿼리스트링, query string )	
+	var url = "tree.jsp?msg="+msg.value;
+	window.open( url, ""
+			, "width=350,height=300,left=100,top=100,scrollbars=yes,resizable=yes");
+}
+</script>
+</head>
+<!-- background="배경이미지의 경로" -->
+<body background="../images/xmas1.gif">
+<input type="button" value="팝업창 열기" onclick="openWin()">
+<br>
+팝업창에 보낼 메시지 : <input type="text" id="msg">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

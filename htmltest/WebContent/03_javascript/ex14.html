@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function startTimer(){
+	alert("이 창은 5초마다 나타납니다.");
+	//타이머객체 = setTimeout("콜백함수",실행간격)
+	timer = setTimeout("startTimer()", 5000); 
+}
+function stopTimer(){  
+	// 타이머를 초기화시킴
+	clearTimeout(timer); 
+}
+</script>
+</head>
+<body background="../images/bg29.gif">
+	<h2>타이머</h2>
+	<input type="button" value="타이머 시작" 
+		onclick="startTimer()">
+	<input type="button" value="타이머 멈춤" 
+		onclick="stopTimer()">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

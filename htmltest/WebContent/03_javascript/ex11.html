@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//자바스크립트의 배열
+	now = new Date();
+	day = now.getDay(); // 요일(0~6)
+	document.write("요일코드:" + day + "<br>");
+	// 배열변수 = new Array();
+	yoil = new Array("일", "월", "화", "수", "목", "금", "토");
+	imgYoil = new Array("sun.gif", "mon.gif", "tue.gif", "wed.gif", "thu.gif",
+			"fri.gif", "sat.gif");
+	// typeof(변수) => 변수의 자료형			
+	document.write("yoil:" + typeof (yoil) + "<br>");
+	document.write("오늘은 <img src='../images/"
+		+imgYoil[day]+"'>요일입니다.<br>");
+	for (i = 0; i < 7; i++) {
+		document.write(yoil[i] + "요일 "
+				+ "<img src='../images/"+imgYoil[i]+"'><br>");
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

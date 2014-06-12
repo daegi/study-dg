@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>페이지 새로고침</title>
+<script type="text/javascript">
+	function viewDate() {
+		var now = new Date(); //날짜 객체
+		now = now.toLocaleString(); //한국어 날짜 형식으로 변환
+		//document.getElementById("태그의 id");
+		var div1 = document.getElementById("div1");
+		//태그.innerHTML
+		//<태그> innerHTML영역</태그>
+		div1.innerHTML = now;
+	}
+</script>
+</head>
+<body onload="viewDate()">
+
+	<input type="button" value="현재 시간 출력" onclick="viewDate()">
+	
+	<input type="button" value="페이지 새로 고침" onclick="location.reload()">
+	<div id="div1"></div>
+	<img alt="" src="../images/clock.gif">
+
+</body>
+</html>
