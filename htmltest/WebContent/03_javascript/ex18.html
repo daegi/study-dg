@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>select 태그 onchange 이벤트</title>
+<script type="text/javascript">
+	function move_page() {
+		var search = document.getElementById("search");
+		if (search.value != "") { //빈 값이 아니면
+			location.href = search.value(); //페이지를 이동시킴
+		}
+	}
+</script>
+
+</head>
+<body>
+	<!-- multiple 펼침 목록, size 펼침목록의 갯수(기본값: 4) 
+	onechange : select 태그의 값이 바뀔 때
+	-->
+	<select id="search" multiple="multiple" size="5" onchange="move_page()">
+		<option value="">선택하세요</option>
+		<option value="http://naver.com">네이버</option>
+		<option value="http://yahoo.com">야후</option>
+		<option value="http://google.com">구글</option>
+		<option value="http://nate.com" selected="selected">네이트</option>
+	</select>
+
+</body>
+</html>

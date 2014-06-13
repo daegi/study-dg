@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function img_change() {
+		var search = document.getElementById("img");
+		div1 = document.getElementById("div1");
+		// innerHTML : <태그>innerHTML</태그> 
+		div1.innerHTML = "<img src =" +img.value+">";
+	}
+</script>
+
+</head>
+<body>
+
+	<table width="400px">
+		<tr align="center">
+			<td><select id="img" multiple="multiple" onchange="img_change()">
+					<option value="../images/i0073.gif">행이</option>
+					<option value="../images/i0074.gif">복이</option>
+					<option value="../images/i0075.gif">왕</option>
+					<option value="../images/i0076.gif">왕비</option>
+			</select></td>
+			<td>
+				<div id="div1">
+					<img alt="" src="../images/i0073.gif">
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

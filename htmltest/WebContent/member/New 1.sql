@@ -23,14 +23,11 @@ INSERT INTO MEMBER (userid,
                     zipcode,
                     address1,
                     address2)
-     VALUES ('kim',
-             '1234',
-             '김민수',
-             'kim@d.com',
-             '010-0000-0000',
-             '157-911',
-             '서울 강서구 화곡동',
-             '12번지');
+     VALUES (
+             
+
+
+             
 
 SELECT * FROM MEMBER;
 
@@ -43,6 +40,45 @@ select * from zipcode;
 select * from zipcode where dong like '역삼%'; 
 
 
+--저장프로시저 작성
+
+
+CREATE OR REPLACE PROCEDURE member_insert (v_userid     IN VARCHAR2,
+                                           v_passwd     IN VARCHAR2,
+                                           v_name       IN VARCHAR2,
+                                           v_email      IN VARCHAR2,
+                                           v_hp         IN VARCHAR2,
+                                           v_zipcode    IN VARCHAR2,
+                                           v_address1   IN VARCHAR2,
+                                           v_address2   IN VARCHAR2)
+IS
+BEGIN
+   INSERT INTO MEMBER (userid,
+                       passwd,
+                       name,
+                       email,
+                       hp,
+                       zipcode,
+                       address1,
+                       address2)
+        VALUES (v_userid,
+                v_passwd,
+                v_name,
+                v_email,
+                v_hp,
+                v_zipcode,
+                v_address1,
+                v_address2);
+END;
+/
+
+
+EXEC member_insert('kim','1234','김민수','kim@d.com','010-0000-0000','157-911', '서울 강서구 화곡동','12번지');
+
+COMMIT;
+
+
+SELECT * FROM MEMBER;
 
 
 

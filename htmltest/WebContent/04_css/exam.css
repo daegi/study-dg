@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+/* body {
+	font-family: 굴림;
+	font-size: 30pt;
+	color: navy;
+}
+ */
+
+
+/* 하이퍼링크가 걸린 텍스트 */
+a:link { text-decoration: none; color: green; }
+/* 마우스가 올라갈 때 */
+a:hover { text-decoration: underline; }
+/* 클릭한 링크 */
+a:visited { text-decoration: none; color:red; }
+/* 클릭한 순간 */
+a:active { text-decoration: none; color: yellow; }

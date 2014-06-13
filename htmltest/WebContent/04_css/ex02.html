@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 외부 스타일시트 파일을 연결시킴 -->
+<link rel="stylesheet" type="text/css" href="exam.css" />
+<!-- 스타일시트 정의 -->
+<style type="text/css">
+/* 태그 { 속성:값 } */
+font {
+	color: blue
+}
+/* 태그.클래스이름  */
+font.c1 {
+	font-size: 50pt;
+	color: red;
+}
+
+font.c2 {
+	font-size: 30pt;
+	color: aqua;
+}
+/* #아이디 */
+#title {
+	font-size: 60pt;
+	color: gray;
+}
+</style>
+</head>
+<body>
+	스타일시트를 사용하지 않은 태그
+	<font>hello</font>
+	<br> 스타일시트를 사용한 태그 (inline style sheet)
+	<font style="font-size: 50pt; color: yellow;">hello</font>
+	<br> 스타일시트의 클래스가 적용된 태그
+	<!-- font.c1 -->
+	<font class="c1">hello</font>
+	<br>
+	<font class="c2">hello</font>
+	<br> 스타일시트의 id가 적용된 태그
+	<div id="title">hello</div>
+	기본스타일이 적용된 태그
+	<div>hello</div>
+</body>
+</html>

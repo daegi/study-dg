@@ -8,6 +8,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function zipcode_copy( zipcode, address ) {
+	// opener 팝업창을 오픈한 부모창(메인창)
+opener.document.getElementById("zipcode").value= zipcode;
+opener.document.getElementById("address1").value= address;
+window.close(); //현재 창을 닫음
+}
+</script>
 </head>
 <body>
 	<h2>우편번호 찾기</h2>
@@ -52,10 +60,16 @@
 								+ rs.getString("gugun") + " "
 								+ rs.getString("dong") + " "
 								+ rs.getString("bunji");
+						String address2 = rs.getString("sido") + " "
+								+ rs.getString("gugun") + " "
+								+ rs.getString("dong") ;				
 		%>
 		<tr>
 			<td><%=zipcode%></td>
-			<td><%=address%></td>
+			<td>
+<!-- href="#" 널링크 - 페이지가 이동되지 않도록 처리 -->
+				<a href="#" 
+onclick="zipcode_copy('<%=zipcode%>','<%=address2%>')"><%=address%></a></td>
 		</tr>
 		<%
 			}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+input:enabled {
+	background-color: aqua;
+}
+
+input:disabled {
+	background-color: gray;
+}
+
+input:focus {
+	background-color: orange;
+}
+/* 
+input {border: 2px solid green; width: 200px; height: 200px;} */
+input {
+	border: 2px;
+	border-style:dotted;
+	border-bottom-color: green;
+	width: 200px;
+	height: 20px;
+}
+</style>
+</head>
+<body>
+	<input>
+	<br>
+	<!-- 일기전용 -->
+	<input readonly="readonly" value="hello">
+	<br>
+
+	<!-- 사용할수 없는 경우(비활성화 상태) -->
+	<input disabled="disabled">
+	<br>
+
+
+</body>
+</html>

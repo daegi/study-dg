@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>라디오 버튼</title>
+<script type="text/javascript">
+	function check(obj) {
+
+		//alert(typeof(form1));  typeof(변수)=>변수의 자료형
+
+		if (obj[3].checked == true) {
+			alert("정담입니다.")
+		} else {
+			alert("틀렸습니다. 정답은 4번입니다.");
+		}
+	}
+</script>
+</head>
+<body>
+	<form action="" name="form1" id="form1">
+		<h2>다음중 가장 빠른 말은?</h2>
+		<!--id는 중복 허용 안됨, name 은 중복 허용 -->
+		<input type="radio" name="q" value="1">야생마 <br> <input
+			type="radio" name="q" value="2" checked="checked">백마 <br>
+		<input type="radio" name="q" value="3">적토마 <br> <input
+			type="radio" name="q" value="4">아줌마 <br> <input
+			type="button" value="정답확인" onclick="check(document.form1.q)">
+	</form>
+
+</body>
+</html>

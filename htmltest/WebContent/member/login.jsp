@@ -14,7 +14,7 @@
 			userid.focus(); //태그.focus() 태그에 입력포커스 설정
 			return; //함수를 종료시킴
 		}
-		var exp1 = /^[A-Za-z0-9]{4,10}$/;
+		var exp1 = /^[A-Za-z0-9]{3,10}$/;
 		if (!exp1.test(userid.value)) {
 			alert("아이디는 영숫자 4~10자리만 입력가능합니다.");
 			userid.focus();
