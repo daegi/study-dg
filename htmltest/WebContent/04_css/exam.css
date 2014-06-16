@@ -1,18 +1,21 @@
+/* exam.css */
 @CHARSET "UTF-8";
-
 /* body {
-	font-family: êµ´ë¦¼;
-	font-size: 30pt;
-	color: navy;
-}
- */
-
-
-/* í•˜ì´í¼ë§í¬ê°€ ê±¸ë¦° í…ìŠ¤íŠ¸ */
+	font-family: ±¼¸²;
+	font-size: 20px;
+	color: navy; 
+} */
+/* ÇÏÀÌÆÛ¸µÅ©°¡ °É¸° ÅØ½ºÆ® */
 a:link { text-decoration: none; color: green; }
-/* ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ê°ˆ ë•Œ */
+/* ¸¶¿ì½º°¡ ¿Ã¶ó°¥ ¶§ */
 a:hover { text-decoration: underline; }
-/* í´ë¦­í•œ ë§í¬ */
+/* Å¬¸¯ÇÑ ¸µÅ© */
 a:visited { text-decoration: none; color:red; }
-/* í´ë¦­í•œ ìˆœê°„ */
+/* Å¬¸¯ÇÑ ¼ø°£ */
 a:active { text-decoration: none; color: yellow; }
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	
+	//id가 menu인 태그 내부의 h3 태그를 클릭하면
+	$(document).ready(function(){
+		$("#menu h3").click(function() {
+			$("#content").toggle("slow");
+		});
+	});
+</script>
+
+
+</head>
+<body>
+
+	<h2>펼침/숨김 목록</h2>
+	<div id="menu">
+		<h3>
+
+			<a href="#">클릭하세요</a>
+		</h3>
+		<p id="content">
+			<img alt="" src="../images/cloud640.jpg">
+
+		</p>
+	</div>
+</body>
+</html>

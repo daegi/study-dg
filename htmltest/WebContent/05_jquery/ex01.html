@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jquery 라이브러리 파일을 참조해야 함 -->
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+
+<script type="text/javascript">
+	/* $(객체or 태그).선택자 */
+	/* 객체.이벤트(함수) */
+	$(document).ready(function() {
+
+		/* alert("문서로딩 완료");
+		var hello = document.getElementById("hello");
+		alert(hello.innerHTML); */
+
+		/* $("#태그의 id") $("태그") $(object)*/
+		var hello = $("#hello");
+		//alert(hello.html()) //태그.html() =>태그의innerHTML value
+
+		//태그.click(함수) 클릭 이벤트
+		hello.click(function() {
+			$(this).hide(); //숨김효과
+		});
+	});
+
+	
+	
+	
+	/* function () {	무명함수(익명)
+		
+	} */
+	
+	
+	
+</script>
+
+</head>
+<body>
+
+	<h2>JQuery</h2>
+	<div id="hello">
+		hello jquery <br> <img alt="" src="../images/clock.gif">
+	</div>
+</body>
+</html>
