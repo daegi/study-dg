@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<style type="text/css">
+p {
+	position: relative;
+	width: 400px;
+	height: 200px;
+}
+
+div {
+	position: absolute;
+	width: 400px;
+	height: 65px;
+	font-size: 36px;
+	text-align: center;
+	color: yellow;
+	background: red;
+	padding-top: 25px; /* 태그 안의 컨텐츠 여백 */ 
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+span {
+	display: none;
+}
+</style>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#fadeIn").click(function() {
+			$("img").fadeOut(100); //페이드아웃 효과
+			//태그.fadeIn(interval,함수)
+			$("div").fadeIn(3000, function() {
+				$("span").fadeIn(100);
+			});
+			return false;
+		});
+		$("#fadeOut").click(function() {
+			$("div").fadeOut(3000, function() {
+				$("img").fadeIn(100);
+			});
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>페이드인/페이드아웃</h2>
+	<p>
+		<img src="../images/spring.jpg" width="400" height="200" />
+	</p>
+	<div>
+		<span>S U C C E S S !</span>
+	</div>
+	<input type="button" value="페이드인" id="fadeIn">
+	<input type="button" value="페이드아웃" id="fadeOut">
+</body>
+</html>

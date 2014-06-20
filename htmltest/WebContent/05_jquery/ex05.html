@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	//페이지가 로드된 후 자동으로 실행되는 함수
+	$(document).ready(function() {
+		$("#category a").click(function(e) {
+			// e - 클릭 이벤트의 정보를 참조하는 객체
+			// e.preventDefault();	//a태그의 기본기능을 비활성화 시킴
+			// 태그. attr("속성") 태그의 속성값
+			var category = $(this).attr("title");
+			$("#newslist li").fadeOut("slow"); //천천히 사라짐
+			if (category == "all") {
+				$("#newslist li").fadeIn("slow"); //천천히 표시
+			} else {
+				//태그[속성=값] -> 완전일치
+				//태그[속성*=값] -> 부분일치
+				$("#newslist li[class*=" + category + "]").fadeIn("slow");
+			}
+		});
+	});
+</script>
+
+</head>
+<body>
+	<h2>필터 기능</h2>
+	<div id="wrap">
+		<div id="category">
+			<!-- UnoderedList -->
+			<ul>
+				<!-- heref="#" 널링크, 하이퍼링크 기능 비활성화 -->
+				<!-- title = "하이퍼링크의 도움말" -->
+				<li><a href="#" title="all">전체기사</a></li>
+				<li><a href="#" title="eco">경제/금융</a></li>
+				<li><a href="#" title="soc">사회</a></li>
+				<li><a href="#" title="star">연예</a></li>
+				<li><a href="#" title="sport">스포츠</a></li>
+			</ul>
+		</div>
+		<div id="newslist">
+			<h3>뉴스 목록</h3>
+			<ul>
+				<li class="eco">경제/금융뉴스1</li>
+				<li class="eco">경제/금융뉴스2</li>
+				<li class="eco">경제/금융뉴스3</li>
+				<li class="soc">사회뉴스1</li>
+				<li class="soc">사회뉴스2</li>
+				<li class="star">연예뉴스1</li>
+				<li class="star">연예뉴스2</li>
+				<li class="sport">스포츠뉴스1</li>
+				<li class="sport">스포츠뉴스2</li>
+				<li class="eco_soc">경제/사회뉴스</li>
+
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

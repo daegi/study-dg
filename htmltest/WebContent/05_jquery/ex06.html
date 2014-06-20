@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+/* #-> 아이디 .->클래스 */
+.content {
+	font-size: 12px;
+}
+</style>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	var fontSize; //전역변수
+	$(document).ready(init);
+	function init() {
+		$("#fontControl li a").click(function(e) {
+			e.preventDefault(); // a태그의 기본기능을 막음
+			var whichClicked = $(this).attr("id");
+			// .content : class 이름이 content인 태그
+			// 태그.css("속성")  태그의 스타일속성값
+			fontSize = parseInt($(".content").css("font-size"));
+			switch (whichClicked) {
+			case "larger":
+				setFontSize(3);
+				break;
+			case "smaller":
+				setFontSize(-3);
+				break;
+			}
+		});
+	}
+	function setFontSize(size) {
+		var totalSize = fontSize + size;
+		// 태그.css({"스타일속성":값})  스타일속성값을 변경시킴	
+		$(".content").css({
+			"font-size" : totalSize + "px"
+		});
+	}
+</script>
+</head>
+<body>
+	<h2>폰트 사이즈 조절</h2>
+	<div id="div1">
+		<ul id="fontControl">
+			<li><a href="#" id="larger">크게</a></li>
+			<li><a href="#" id="smaller">작게</a></li>
+		</ul>
+	</div>
+	<div class="content">hello java</div>
+</body>
+</html>

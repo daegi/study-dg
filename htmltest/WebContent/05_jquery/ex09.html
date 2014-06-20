@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// 태그.bind() 태그에 여러개의 이벤트를 연결시킴
+		$("img").bind({
+			mouseout : function() {
+				$("img").attr("src", "../images/i0075.gif");
+			},
+			mouseover : function() {
+				$("img").attr("src", "../images/i0076.gif");
+			},
+			click : function() {
+				$("img").attr("src", "../images/i0073.gif");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<img alt="" src="../images/i0075.gif">
+	<!-- <img alt="" src="../images/i0076.fig">
+	<img alt="" src="../images/i0073.fig"> -->
+</body>
+</html>

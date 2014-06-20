@@ -45,9 +45,11 @@
 	<h2>아이디 중복 확인</h2>
 	<%
 		String userid = "";
+
 		if (request.getParameter("userid") != null) {
 			userid = request.getParameter("userid");
 		}
+
 	%>
 	<form name="form1" id="form1" method="post">
 		<input type="text" name="userid" id="userid" value="<%=userid%>" /> <input

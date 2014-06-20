@@ -100,8 +100,7 @@
 			<%
 				}
 			%>
-		</select> <br>
-		<br>
+		</select> <br> <br>
 		<table border="1" style="width: 650px">
 			<tr style="text-align: center; background-color: aqua;">
 				<td>우편번호</td>

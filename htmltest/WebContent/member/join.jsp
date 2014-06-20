@@ -10,7 +10,7 @@
 function zipcode_search(){
 	// 우편번호 조회 페이지를 팝업창으로 오픈
 // window.open( "url", "팝업창의 id", "옵션" )	
-	window.open("../member/zipcode_search.jsp", "", "width=600, height=500, scrollbars=yes");
+	window.open("../zipcode/zipcode2.jsp", "", "width=600, height=500, scrollbars=yes");
 }
 function member_join(){
 	var form1 = document.getElementById("form1");

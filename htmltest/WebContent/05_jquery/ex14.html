@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("div").click(function() {
+			// 태그.html( 값 )  태그의 innerHTML을 변경함
+			$(this).html(function(index, html) {
+				//alert("index:"+index+"\nhtml:"+html);
+				return html + "*";
+			});
+		});
+		// setInterval(콜백함수, 호출간격)
+		// 태그.last().trigger("이벤트") 마지막 태그에 이벤트를 연결시킴
+		setInterval(function() {
+			$("div").last().trigger("click")
+		}, 10);
+	});
+</script>
+</head>
+<body>
+	<h2>타이머</h2>
+	<div>start</div>
+	<div>start</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

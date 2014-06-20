@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../include/jquery-2.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btnSelect").click(function() { //버튼 클릭 이벤트
+			var checkedList = "";
+			/* input[name='hobby']:checked 
+			 => input 태그 중에서 name이 hobby이고 체크된 태그들 
+			 태그.each( 함수 )  태그 각각에 대해 반복 처리
+			 */
+			$("input[name='hobby']:checked").each(function() {
+				//$(this).next().text()  
+				/* $(this) 현재 작업중인 태그
+				 $(this).next().text() 현재 작업 중인 태그의 다음 태그의 텍스트 */
+				checkedList += $(this).next().text() + "\t";
+			});
+			//id가 result인 태그의 innerHTML 영역에 복사
+			//document.getElementById("result").innerHTML = checkedList;		
+			$("#result").html(checkedList);
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>체크박스</h2>
+	<!-- <span> 줄바꿈을 하지 않음 -->
+	* 취미를 선택하세요
+	<br>
+	<input type="checkbox" name="hobby" value="music">
+	<span>음악감상</span>
+	<input type="checkbox" name="hobby" value="reading">
+	<span>독서</span>
+	<input type="checkbox" name="hobby" value="sports">
+	<span>스포츠</span>
+	<input type="button" id="btnSelect" value="확인">
+	<br> * 결과 :
+	<div id="result"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
