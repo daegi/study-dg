@@ -8,11 +8,11 @@ public class BufferedReaderEx1 {
 
 	public static void main(String[] args) {
 
-		// String filename = "BufferedReaderEx1.java";
+		BufferedReader br;
 
 		try {
 			FileReader fr = new FileReader("BufferedReaderEx1.java");
-			BufferedReader br = new BufferedReader(fr);
+			br = new BufferedReader(fr);
 
 			String line = "";
 			for (int i = 1; (line = br.readLine()) != null; i++) {

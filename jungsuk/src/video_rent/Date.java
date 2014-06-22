@@ -1,4 +1,4 @@
-package rent;
+package video_rent;
 import java.util.Scanner;
 
 public class Date {//날짜 클레스

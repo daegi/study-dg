@@ -8,10 +8,12 @@ public class BufferedOutputStreamEx1 {
 
 	public static void main(String[] args) {
 
+		BufferedOutputStream bos = null;
+
 		try {
 			FileOutputStream fos = new FileOutputStream("test.txt");
 
-			BufferedOutputStream bos = new BufferedOutputStream(fos, 5);
+			bos = new BufferedOutputStream(fos, 5);
 
 			for (int i = '1'; i <= '9'; i++) {
 				bos.write(i);

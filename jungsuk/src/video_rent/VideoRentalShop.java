@@ -1,4 +1,4 @@
-package rent;
+package video_rent;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Vector;

@@ -1,4 +1,4 @@
-package rent;
+package video_rent;
 public class Rental {//대여 클래스
 	private Member member;
 	private Video video;
