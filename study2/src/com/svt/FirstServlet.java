@@ -27,8 +27,8 @@ public class FirstServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		out.println("<html><body>");
-		out.println("¹æ°¡¹æ°¡^^<br>");
-		out.println("ÇöÁ¦½Ã°£Àº:" + s);
+		out.println("ë°©ê°€ë°©ê°€^^<br>");
+		out.println("í˜„ì œì‹œê°„ì€:" + s);
 		out.println("</body></html>");
 	}
 }
