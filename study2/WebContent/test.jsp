@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function SetEmailTail(emailValue) {
-	  var email = document.all("email")    // 사용자 입력
-	  var emailTail = document.all("email2") // Select box
+	  var email = document.all("email1");    // 사용자 입력
+	  var emailTail = document.all("email2"); // Select box
 	  
 	  if ( emailValue == "notSelected" )
 	   return;
@@ -26,7 +26,7 @@ function SetEmailTail(emailValue) {
 <body>
 
 	<input type="text" name="email1" value="" /> @
-	<input type="text" name="email2" value="" ReadOnly="true" />
+	<input type="text" name="email2" value="" ReadOnly="readonly" />
 	<select name="emailCheck"
 		onchange="SetEmailTail(emailCheck.options[this.selectedIndex].value)">
 		<option value="notSelected">::선택하세요::</option>
