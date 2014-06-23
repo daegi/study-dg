@@ -1,7 +1,5 @@
 package com.calc;
 
-import java.text.Format;
-
 public class CalcVO {
 	private int num1;
 	private int num2;
@@ -32,16 +30,21 @@ public class CalcVO {
 	}
 
 	public String result() {
+		if (oper == null)
+			return "";
 
-		if (oper.equals("+"))
-			System.out.println(num1 + num2);
-		else if (oper.equals("-"))
-			System.out.println(num1 - num2);
-		else if (oper.equals("*"))
-			System.out.println(num1 * num2);
-		else if (oper.equals("/"))
-			System.out.println(num1 / num2);
-		return oper ;
+		String s = "";
+		if (oper.equals("+")) {
+			s = String.format("%d + %d = %d", num1, num2, num1 + num2);
+		} else if (oper.equals("-")) {
+			s = String.format("%d - %d = %d", num1, num2, num1 - num2);
+		} else if (oper.equals("*")) {
+			s = String.format("%d * %d = %d", num1, num2, num1 * num2);
+		} else if (oper.equals("/")) {
+			s = String.format("%d / %d = %d", num1, num2, num1 / num2);
+		}
+
+		return s;
 	}
 
 }
