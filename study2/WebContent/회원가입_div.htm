@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-size: 9pt;
+	font-family: 돋움;
+}
+
+#member {
+	width:600px;
+	margin:20px auto;
+	text-align:left;
+}
+
+#member_title {
+	width:574px;
+	padding-left:20px;
+	height:40px;
+	border:3px solid #D6D4A6;
+	text-align:left;
+	font-weight: bold;
+	line-height:40px;
+	font-size:10pt;
+	margin-bottom:30px;
+}
+
+#memberCreated {
+	width:600px;
+	overflow: visible;
+	border-top:3px solid #DBDBDB;
+	border-bottom:3px solid #DBDBDB;
+	text-align:left;
+}
+
+.memberCreated_bottomLine {
+	height:35px;
+	line-height:35px;
+	border-bottom:1px solid #DBDBDB;
+	clear:both;
+	text-align:left;
+}
+.memberCreated_noLine {
+	height:35px;
+	line-height:35px;
+	clear:both;
+	text-align:left;
+}
+
+#memberCreated_content {
+	height:170px;
+	line-height:170px;
+	border-bottom:1px solid #DBDBDB;
+	clear:both;
+	text-align:left;
+}
+
+#memberCreated dt {
+	float:left;
+	height:35px;
+	width:80px;
+	line-height:35px;
+	text-align:left;
+	padding-left:20px;
+	background:#EEEEEE;
+}
+#memberCreated dd {
+	float:left;
+	height:35px;
+	width:440px;
+	line-height:35px;
+	text-align:left;
+	padding-left:10px;
+}
+
+#memberCreated_content dt {
+	float:left;
+	height:170px;
+	width:80px;
+	text-align:left;
+	padding-left:20px;
+	background:#EEEEEE;
+}
+#memberCreated_content dd {
+	float:left;
+	height:170px;
+	width:440px;
+	line-height:170px;
+	text-align:left;
+	padding-left:10px;
+}
+
+#memberCreated_footer {
+	width:600px;
+	overflow: visible;
+	clear:both;
+	height:30px;
+	line-height:30px;
+	margin-top:5px;
+	margin-bottom:5px;
+	text-align:center;
+}
+
+#memberCreated_message {
+	width:600px;
+	overflow: visible;
+	clear:both;
+	height:20px;
+	line-height:20px;
+	margin-top:0px;
+	margin-bottom:5px;
+	text-align:center;
+}
+
+.boxTF {
+	border: 1px solid #666666; height: 15px; 
+	margin-top:5px;
+	margin-bottom:5px;
+	padding: 2px 2px 2px 2px;
+	font-family: 돋움; font-size: 9pt;
+}
+
+.selectField {
+	border:1px solid #666666;
+	background-color:#ffffff;
+	font-family:돋움;
+	font-size:9pt;
+	margin-top:7px;
+	margin-bottom:5px;
+	padding: 1px 2px 1px 2px;
+}
+
+.btn {   
+	color:#000000;
+	font: normal 9pt '돋움','trebuchet ms',helvetica,sans-serif;
+	background-color:#E4E4E4;
+	border:1px solid;
+	border-color: #696 #363 #363 #696;
+	line-height:16px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffffff), to(#ffeeddaa0));
+    background: -moz-linear-gradient(top,  #ffffffff,  #ffeeddaa0);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffeeddaa0');
+	padding:1px 6px 1px 6px;
+}
+</style>
+
+<script type="text/javascript">
+String.prototype.trim = function(){
+	var TRIM_PATTERN = /(^\s*)|(\s*$)/g;
+	return this.replace(TRIM_PATTERN, "");
+};
+
+function isValidDateFormat(data){
+	var format = /[12][0-9]{3}-[0-9]{2}-[0-9]{2}/;
+	if(data.search(format) == -1)
+		return false;
+		
+	var _year = data.substr(0,4);
+	var _month= data.substr(5,2);
+	var _day = data.substr(8,2);
+	
+	return isValidDate(_year, _month, _day);		
+}
+
+// 날짜가 정확한지 검사(문자)
+function isValidDate(y, m, d){
+	var year, month, day;
+	var days = new Array (31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+
+	y = y.trim();
+	m = m.trim();
+	d = d.trim();
+    if(y.length != 4 || m.length!=2 || d.length!=2)
+		return false;
+
+    year = parseInt(y);
+
+    if(m.charAt(0) == '0')
+        m = m.charAt(1);
+    month = parseInt(m);
+
+    if(d.charAt(0) == '0')
+        d = d.charAt(1);
+    day = parseInt(d);
+
+    // 날짜 검사
+	if(year%4==0 && year%100 !=0 || year%400==0)
+		days[1]=29;
+	else
+		days[1]=28;
+
+	if(month < 1 || month > 12)
+		return false;
+
+	if(day < 1 || day > days[month-1])
+		return false;
+
+	return true;
+}
+
+function memberOk() {
+	var f = document.memberForm;
+	var str;
+
+	str = f.userId.value;
+	str = str.trim();
+	if(!str) {
+		alert("\n아이디를 입력하세요. ");
+		f.userId.focus();
+		return;
+	}
+	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
+		alert("아이디는 5~10자이며 첫글자는 영문자이어야 합니다.");
+		f.userId.focus();
+		return;
+	}
+
+/*
+	if(!/^((\w|[\_\!\$\#])+)$/.test(str)) {
+		alert("\n아이디는 영숫자와 _ ! $ # %만 가능합니다. ");
+		f.userId.focus();
+		return;
+	}
+*/    
+	f.userId.value = str;
+
+	str = f.userPwd.value;
+	str = str.trim();
+	if(!str) {
+		alert("\n패스워드를 입력하세요. ");
+		f.userPwd.focus();
+		return;
+	}
+	if(!/^(?=.*[a-z])(?=.*[!@#$%^*+=-]|.*[0-9]).{5,10}$/i.test(str)) { 
+		alert("패스워드는 5~10자이며 하나 이상의 숫자나 특수문자가 포함되어야 합니다.");
+		f.userPwd.focus();
+		return;
+	}
+	f.userPwd.value = str;
+
+	if(str!= f.userPwd1.value) {
+        alert("\n패스워드가 일치하지 않습니다. ");
+        f.userPwd1.focus();
+        return;
+	}
+	
+    str = f.userName.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n이름을 입력하세요. ");
+        f.userName.focus();
+        return;
+    }
+    f.userName.value = str;
+
+    str = f.birth.value;
+	str = str.trim();
+    if(!str || !isValidDateFormat(str)) {
+        alert("\n생년월일를 입력하세요[YYYY-MM-DD]. ");
+        f.birth.focus();
+        return;
+    }
+    
+    str = f.tel1.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n전화번호를 입력하세요. ");
+        f.tel1.focus();
+        return;
+    }
+
+    str = f.tel2.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n전화번호를 입력하세요. ");
+        f.tel2.focus();
+        return;
+    }
+    if(!/^(\d+)$/.test(str)) {
+        alert("\n숫자만 가능합니다. ");
+        f.tel2.focus();
+        return;
+    }
+
+    str = f.tel3.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n전화번호를 입력하세요. ");
+        f.tel3.focus();
+        return;
+    }
+    if(!/^(\d+)$/.test(str)) {
+        alert("\n숫자만 가능합니다. ");
+        f.tel3.focus();
+        return;
+    }
+    
+    str = f.email1.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n이메일을 입력하세요. ");
+        f.email1.focus();
+        return;
+    }
+
+    str = f.email2.value;
+	str = str.trim();
+    if(!str) {
+        alert("\n이메일을 입력하세요. ");
+        f.email2.focus();
+        return;
+    }
+
+	str = f.question.value;
+    if(!str) {
+       alert("\n질문을 선택 하세요 !!!");
+       f.question.focus();
+       return;
+    }
+
+	str = f.answer.value;
+	str = str.trim();
+    if(!str) {
+       alert("\n질문에 대한 답변을 입력 하세요 !!!");
+       f.answer.focus();
+       return;
+    }
+ 	f.answer.value = str;
+    
+ 	//f.action = "";
+    //f.submit();
+}
+
+function changeEmail() {
+    var f = document.memberForm;
+    
+ 	var str = f.selectEmail.value;
+    if(str!="direct") {
+         f.email2.value=str; 
+         f.email2.readOnly = true;
+         f.email1.focus(); 
+    }
+    else {
+        f.email2.value="";
+        f.email2.readOnly = false;
+        f.email1.focus();
+    }
+}
+
+function changeQuestion() {
+    var f = document.memberForm;
+    
+ 	str = f.question.value;
+    if(!str) {
+      f.answer.readOnly = true;
+    }
+    else {
+      f.answer.readOnly = false;
+      f.answer.focus();
+    }
+}
+
+if(window.attachEvent) { // IE
+	window.attachEvent("onload", function(){
+		var ob=document.getElementsByTagName("input");
+		for(var i=0; i<ob.length; i++) {
+			if(ob[i].getAttribute("type")=="text" || ob[i].getAttribute("type")=="password") {
+				ob[i].onkeydown=function() { // IE만 가능
+			        if(event.keyCode==13){
+			        	event.keyCode=9; 
+			        	return event.keyCode;
+			        }
+				}
+				
+				ob[i].onfocus=function() {
+					if(! this.getAttribute("readonly"))
+					   this.style.border="1px solid red";
+				};
+				ob[i].onblur=function() {
+					if(! this.getAttribute("readonly"))
+					  this.style.border="1px solid #666666";
+				};
+			}
+		}
+	});
+} else if(window.addEventListener) {
+	window.addEventListener("load", function(){
+		var ob=document.getElementsByTagName("input");
+		for(var i=0; i<ob.length; i++) {
+			if(ob[i].getAttribute("type")=="text" || ob[i].getAttribute("type")=="password") {
+				ob[i].onfocus=function() {
+					if(! this.getAttribute("readonly"))
+					  this.style.border="1px solid red";
+				};
+				ob[i].onblur=function() {
+					if(! this.getAttribute("readonly"))
+					  this.style.border="1px solid #666666";
+				};
+			}
+		}
+	});
+}
+
+</script>
+</head>
+<body>
+
+	<div id="member">
+		<div id="member_title">
+		회 원 가 입
+		</div>
+
+		<form name="memberForm" method="post" action="">
+		<div class="memberCreated_noLine" >
+			<ul style="margin:0px; padding:0px; list-style-type: square; margin-left: 20px;">
+					<li> 회원정보 입력 </li>
+			</ul>
+		</div>
+		
+		<div id="memberCreated">
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>아 이 디</dt>
+					<dd>
+						  <input type="text" name="userId" id="userId"  size="25" maxlength="10"  class="boxTF"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>패스워드</dt>
+					<dd>
+						  <input type="password" name="userPwd" id="userPwd" size="25" maxlength="10"  class="boxTF" />
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>패스워드 확인</dt>
+					<dd>
+						  <input type="password" name="userPwd1" id="userPwd1" size="25" maxlength="10"  class="boxTF" />
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>이 름</dt>
+					<dd>
+						  <input type="text" name="userName" size="25" maxlength="20"  class="boxTF" />
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>생년월일</dt>
+					<dd>
+						  <input type="text" name="birth" size="25" maxlength="20"  class="boxTF" />
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>전화번호</dt>
+					<dd>
+						  <select name="tel1" class="selectField">
+								<option value="">선 택</option>
+								<option value="010" >010</option>
+								<option value="011" >011</option>
+								<option value="016" >016</option>
+								<option value="017" >017</option>
+								<option value="018" >018</option>
+								<option value="019" >019</option>
+						  </select>
+						  <input type="text" name="tel2" size="5"				maxlength="4"  class="boxTF" 
+								onkeypress="onlyNum();"/> -
+						  <input type="text" name="tel3" size="5" maxlength="4"  class="boxTF" 
+							onkeypress="onlyNum();"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>E-Mail</dt>
+					<dd>
+						  <input type="text" name="email1" size="13" maxlength="30"  class="boxTF"/> @ 
+						  <input type="text" name="email2" size="13" maxlength="30"  class="boxTF" readonly="readonly"/>
+						  <select name="selectEmail" onchange="changeEmail()" class="selectField">
+								<option value="">선 택</option>
+								<option value="naver.com">naver.com</option>
+								<option value="hanmail.net">hanmail.net</option>
+								<option value="hotmail.com">hotmail.com</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="direct">직접입력</option>
+						  </select>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>질 문</dt>
+					<dd>
+						  <select name="question" style="margin-top:7px;" onchange="changeQuestion()" class="selectField">
+								<option value="">질문을 선택 하세요 ...</option>
+								<option value="1" >초등학교는 ?</option>
+								<option value="2" >좋아하는 색깔 ?</option>
+								<option value="3" >인생 좌우명 ?</option>
+								<option value="4" >보물1호 ?</option>
+								<option value="5" >존경하는 사람 ?</option>
+						  </select>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>답 변</dt>
+					<dd>
+						  <input type="text" name="answer" size="25" maxlength="20"  class="boxTF" readonly="readonly"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine">
+				<dl>
+					<dt>우편번호</dt>
+					<dd>
+						  <input type="text" name="zip" size="15" maxlength="10"  class="boxTF" 
+								readonly="readonly"	/>
+						  <input type="button" value="우편번호 검색" class="btn" onclick=""/>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_bottomLine" style="height: 60px;">
+				<dl>
+					<dt style="height: 60px;">주 소</dt>
+					<dd>
+						  <input type="text" name="addr1" size="48" maxlength="50"  class="boxTF" 
+									readonly="readonly"  /><br/>  
+						  <input type="text" name="addr2" size="48" maxlength="50"  class="boxTF"  />  
+					</dd>
+				</dl>
+			</div>
+
+			<div class="memberCreated_noLine">
+				<dl>
+					<dt>직 업</dt>
+					<dd>
+						  <input type="text" name="job" size="25" maxlength="20"  class="boxTF"  />
+					</dd>
+				</dl>
+			</div>
+
+		</div>
+
+		<div id="memberCreated_footer">
+			<input type="button" value=" 회원가입 " class="btn" onclick="memberOk();"/>
+			<input type="reset" value=" 다시입력 " class="btn" onclick="document.memberForm.userId"/>
+			<input type="button" value=" 가입취소 " class="btn" onclick=";"/>
+		</div>
+		<div id="memberCreated_message">
+		  <font color="blue"></font>
+		</div>
+
+		</form>
+	</div>
+   
+</div>
+
+
+
+</body>
+</html>
