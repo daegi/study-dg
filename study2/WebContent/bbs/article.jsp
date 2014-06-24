@@ -23,7 +23,6 @@
 	//엔터를<br>로 바꾸어야 라인 넘어감
 	
 	dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
-	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

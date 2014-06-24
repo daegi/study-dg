@@ -8,7 +8,7 @@
 		&nbsp;|&nbsp;
 		<a href="<%=cp%>" >메인</a>
 		&nbsp;|&nbsp;
-		<a href="<%=cp%>">방명록</a>
+		<a href="<%=cp%>/guest/list.jsp">방명록</a>
 		&nbsp;|&nbsp;
 		<a href="<%=cp%>">공지사항</a>
 		&nbsp;|&nbsp;
