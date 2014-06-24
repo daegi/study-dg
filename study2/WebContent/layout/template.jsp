@@ -21,12 +21,8 @@
 	</div>
 	
 	<div class="layoutBody">
-			<table border="0" style="width: 800px;">
-			<tr valign="top" align="left" height="500">
-			<td>&nbsp;테스트
-			</td>
-			</tr>
-			</table>
+	   <!-- 몸체영역 -->
+	   
 	</div>
 	
 	<div class="layoutFooter">

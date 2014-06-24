@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+#bbs {
+	width:600px;
+	margin:30px auto;
+	text-align:left;
+}
+
+#bbs_title {
+	width:600px;
+	padding-left:0px;
+	height:30px;
+	/*border:3px solid #EFF3FB;*/
+	text-align:left;
+	font-weight: bold;
+	line-height:30px;
+	font-size:13pt;
+	margin-bottom:10px;
+	font-family: 나눔고딕, 견고딕, 굴림;
+}
+
+
+#bbsArticle {
+	width:600px;
+	overflow: visible;
+	border-top:3px solid #507CD1;
+	border-bottom:3px solid #507CD1;
+	text-align:left;
+}
+
+#bbsArticle_header {
+	height:35px;
+	line-height:35px;
+	border-bottom:2px solid #DBDBDB;
+	text-align:center;
+}
+
+#bbsArticle dt {
+	float:left;
+	height:35px;
+	width:60px;
+	line-height:35px;
+	text-align:center;
+	background-color:#EEEEEE;
+}
+
+#bbsArticle dd {
+	float:left;
+	height:35px;
+	width:230px;
+	line-height:35px;
+	text-align:left;
+	padding-left:10px;
+}
+
+.bbsArticle_bottomLine {
+	height:35px;
+	line-height:35px;
+	border-bottom:1px solid #DBDBDB;
+	clear:both;
+	text-align:left;
+}
+.bbsArticle_noLine {
+	height:35px;
+	line-height:35px;
+	clear:both;
+	text-align:left;
+}
+
+#bbsArticle_content {
+	overflow: visible;
+	border-bottom:1px solid #DBDBDB;
+	text-align:left;
+    min-height:150px;
+    padding: 20px 60px 20px 60px;
+    word-break:break-all;
+}
+
+#bbsArticle_footer {
+	clear:both;
+	height:32px;
+	line-height:32px;
+	margin-bottom:20px;
+}
+
+#bbsArticle_footer #leftFooter{
+	float:left;
+	width:300px;
+	text-align:left;
+}
+#bbsArticle_footer #rightFooter{
+	float:right;
+	width:300px;
+	text-align:right;
+}
