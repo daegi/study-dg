@@ -12,7 +12,25 @@ CREATE TABLE bbs (
 )
 
 
+insert into bbs values(seq_bbs.nextval,'12','24','3','2','56',sysdate,'234');
 
+
+
+select num, subject from bbs
+
+select num, subject from bbs order by num desc;
+
+select rownum, num, subject from bbs;
+
+--rownum ; order by 절이 있거나 where 절에서 사용하면 이상한 현상이 일어남
+select rownum, num, subject from bbs order by num desc
+
+--순위 추출
+select * from(
+	select 
+	row_number() over(order by num desc) 
+	rnum, num, subject from bbs)
+	where rnum >= 5 and rnum <= 10 order by num desc;
 
 create sequence seq_bbs
    
@@ -41,3 +59,9 @@ constraint pk_bbs_num primary key(num)
 );
 
 create sequence seq_guest;
+
+
+
+
+
+
