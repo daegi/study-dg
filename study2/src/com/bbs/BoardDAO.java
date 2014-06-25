@@ -33,9 +33,7 @@ public class BoardDAO {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-
 		}
-
 		return result;
 	}
 
@@ -93,7 +91,6 @@ public class BoardDAO {
 				dto.setHitCount(rs.getInt("hitcount"));
 
 				list.add(dto);
-
 			}
 			rs.close();
 			pstmt.close();
@@ -187,7 +184,7 @@ public class BoardDAO {
 
 		try {
 			sql = "delete from bbs where num=?";
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); 
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 			pstmt.close();

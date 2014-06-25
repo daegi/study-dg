@@ -50,7 +50,6 @@
 <link rel="stylesheet" href="<%=cp%>/data/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/layout.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/board/list.css" type="text/css"/>
-
 </head>
 
 <body>

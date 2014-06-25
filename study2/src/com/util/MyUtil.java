@@ -2,10 +2,8 @@ package com.util;
 
 public class MyUtil {
 
-	// 전체 페이지수 구하기
-
 	/**
-	 * 
+	 * 전체 페이지수 구하기
 	 * @param numPerPage
 	 *            한화면에 표시할 데이터수
 	 * @param dataCount
