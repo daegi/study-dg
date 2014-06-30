@@ -70,7 +70,7 @@
 					   <input type="image" src="<%=cp%>/data/images/btn_delete.gif" onclick="javascript:location.href='<%=cp%>/bbs/pwd.do?pageNum=${pageNum}&num=${dto.num}&mode=delete';"/>
 				</div>
 				<div id="rightFooter">
-					   <input type="image" src="<%=cp%>/data/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/bbs/list.do?pageNum=${pageNum}';"/>
+					   <input type="image" src="<%=cp%>/data/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/bbs/list.do?${params}';"/>
 				</div>
 			</div>
 

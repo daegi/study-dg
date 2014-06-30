@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="<%=cp%>/data/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/layout.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/board/list.css" type="text/css"/>
+<script type="text/javascript">
+
+function searchList() {
+	var f = document.searchForm;
+	
+	f.action = "<%=cp%>/bbs/list.do";
+	f.submit();
+}
+</script>
 
 </head>
 
@@ -41,9 +50,10 @@
 						<option value="subject">제목</option>
 						<option value="name">작성자</option>
 						<option value="content">내용</option>
+						<option value="created">등록일</option>
 					</select>
 					<input type="text" name="searchValue" class="boxTF"/>
-					<input type="button" value=" 검 색 " class="btn2" onclick=""/>
+					<input type="button" value=" 검 색 " class="btn2" onclick="searList();"/>
 				  </form>
 				</div>
 				<div id="rightHeader">

@@ -21,16 +21,16 @@
       		      <div style="margin-top: 5px; float: right;">
 					<c:choose>
 					      <c:when test="${empty sessionScope.session}">
-							<a href="<%=cp%>">로그인</a>
+							<a href="<%=cp%>/login/login.do">로그인</a>
 							&nbsp;|&nbsp;
-							<a href="<%=cp%>">회원가입</a>
+							<a href="<%=cp%>/member/member.do">회원가입</a>
 						</c:when>
 						<c:otherwise>
 								<font color="blue">${sessionScope.session.userName}</font>님
 								&nbsp;|&nbsp;
-								<a href="<%=cp%>">로그아웃</a>
+								<a href="<%=cp%>/login/logout.do">로그아웃</a>
 								&nbsp;|&nbsp;
-								<a href="<%=cp%>">정보수정</a>
+								<a href="<%=cp%>/member/update.do">정보수정</a>
 						</c:otherwise>
 					</c:choose>
       		      </div>

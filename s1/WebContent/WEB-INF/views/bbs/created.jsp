@@ -45,15 +45,7 @@
 		*/
 	    f.name.value = str;
 
-        /* if(f.email.value) {
-	    	if(!isValidEmail(f.email.value)) {
-                alert("\n정상적인 E-Mail을 입력하세요. ");
-                f.email.focus();
-                return false;
-	    	}
-        } */
-
-    	str = f.content.value;
+       	str = f.content.value;
         if(!str) {
             alert("내용을 입력하세요. ");
             f.content.focus();
@@ -69,10 +61,18 @@
         }
     	f.pwd.value = str;
     	
-        f.action = "<%=cp%>/bbs/created_ok.do";
-        // image 버튼, submit은 submit() 메소드 호출하면 두번전송
-        return true;
-    }
+    	//자바스크립트에서 EL,표현식사용가능
+    	var mode= "${mode}"; 
+
+    	if (mode == "created") {
+    		f.action = "<%=cp%>/bbs/created_ok.do"
+		}else if (mode =="update"){
+        	f.action = "<%=cp%>/bbs/update_ok.do";
+    	}
+        	
+		// image 버튼, submit은 submit() 메소드 호출하면 두번전송
+		return true;
+	}
 </script>
 
 </head>
@@ -98,7 +98,7 @@
 					<dl>
 						<dt>제&nbsp;&nbsp;&nbsp;&nbsp;목</dt>
 						<dd>
-							  <input type="text" name="subject" size="74" maxlength="100"  class="boxTF" />
+							  <input type="text" name="subject" size="74" maxlength="100"  class="boxTF" value="${dto.subject}"/>
 						</dd>
 					</dl>
 				</div>
@@ -107,7 +107,7 @@
 					<dl>
 						<dt>작성자</dt>
 						<dd>
-							  <input type="text" name="name" size="35" maxlength="20" class="boxTF" />
+							  <input type="text" name="name" size="35" maxlength="20" class="boxTF" value="${dto.name}"/>
 						</dd>
 					</dl>
 				</div>
@@ -125,7 +125,7 @@
 					<dl>
 						<dt>내&nbsp;&nbsp;&nbsp;&nbsp;용</dt>
 						<dd>
-							  <textarea name="content" cols="72" rows="12" class="boxTA"></textarea>
+							  <textarea name="content" cols="72" rows="12" class="boxTA" >${dto.content}</textarea>
 						</dd>
 					</dl>
 				</div>
@@ -141,6 +141,11 @@
 			</div>
 
 			<div id="bbsCreated_footer">
+			<c:if test="${mode=='update'}">
+				<input type="hidden" name="num" value="${dto.num}">
+				<input type="hidden" name="pageNum" value="${pageNum}">
+			</c:if>
+			
 				<input type="image" src="<%=cp%>/data/images/btn_submit.gif" />
         		<a href="javascript:location.href='<%=cp%>/bbs/list.do';"><img src="<%=cp%>/data/images/btn_cancel.gif" border="0"></a>
 			</div>
