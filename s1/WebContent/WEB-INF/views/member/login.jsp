@@ -27,7 +27,7 @@
 			return;
 		}
 
-		f.action="<%=cp%>";
+		f.action="<%=cp%>/login/login_ok.do";
 		f.submit();
 	}
 </script>

@@ -1,4 +1,20 @@
 
+CREATE TABLE bbs (
+   num NUMBER NOT null,
+   name varchar2(50) not null,
+   subject varchar2(100)not null,
+   content varchar2(4000)    not null,
+   pwd varchar2(50),
+   hitCount number,
+   created DATE DEFAULT SYSDATE,
+   CONSTRAINT pk_bbs_num PRIMARY KEY(num)
+);
+
+
+create sequence seq_bbs;
+
+
+
 --멤버테이블 작성
 DROP TABLE join_detail PURGE;
 DROP TABLE join_basic PURGE;
@@ -12,6 +28,7 @@ CREATE TABLE join_basic (
      ,modify_date     DATE DEFAULT SYSDATE
      ,CONSTRAINT pk_join_basic_userId PRIMARY KEY(userId)
 );
+
 
 CREATE TABLE join_detail (
      userId      VARCHAR2(50) NOT NULL
@@ -30,21 +47,6 @@ CREATE TABLE join_detail (
 );
 
 
-update member set email=?,tel=?,question=?, zip=? ,addr1=?,addr2=? where userId=? 
-
-,userPwd
-
-
-email       VARCHAR2(50)
-     ,tel          VARCHAR2(15)
-     ,question  VARCHAR2(50)
-     ,answer    VARCHAR2(50)
-     ,job         VARCHAR2(50)
-     ,zip          VARCHAR2(7)
-     ,addr1      VARCHAR2(50)
-     ,addr2   
-
-
 CREATE TABLE post (
 	seq  NUMBER  NOT NULL
 	,zipcode  VARCHAR2(10)
@@ -53,6 +55,23 @@ CREATE TABLE post (
 	,dong  VARCHAR2(100)
 	,bunji  VARCHAR2(50)
         ,PRIMARY KEY (seq)
+);
+
+
+
+CREATE TABLE pds
+(
+   num                NUMBER,
+   userid             VARCHAR2 (50) NOT NULL,
+   saveFilename       VARCHAR2 (255),
+   originalFilename   VARCHAR2 (255),
+   content            VARCHAR2 (4000),
+   downcount          NUMBER DEFAULT 0,
+   creted             DATE DEFAULT SYSDATE,
+   CONSTRAINT pk_pds_num PRIMARY KEY (num),
+   CONSTRAINT fk_pds_userid FOREIGN KEY
+      (userId)
+       REFERENCES join_basic (userId) ON DELETE CASCADE
 );
 
 

@@ -52,7 +52,7 @@
 				<ul>
 				<li><a href="#">방명록</a></li>
 				<li><a href="<%=cp%>/bbs/list.do">게시판</a></li>
-				<li><a href="#">자료실</a></li>
+				<li><a href="<%=cp%>/pds/list.do">자료실</a></li>
 				<li><a href="#">포토겔러리</a></li>
 				</ul>
 			</li>

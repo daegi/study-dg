@@ -129,7 +129,12 @@
         }
      	f.answer.value = str;
         
-     	f.action = "<%=cp%>";
+     	var mode="${mode}";
+     	
+     	if(mode=="created")
+     		f.action = "<%=cp%>/member/member_ok.do";
+  		else if(mode=="update")
+     		f.action = "<%=cp%>/member/update_ok.do";
        		
         f.submit();
     }
@@ -383,9 +388,11 @@
 	
 				<div id="memberCreated_footer">
 					<input type="hidden" name="mode" value="${mode}"/>
+					
 					<input type="button" value=" 회원가입 " class="btn" onclick="memberOk();"/>
 					<input type="reset" value=" 다시입력 " class="btn" onclick="document.memberForm.userId"/>
 					<input type="button" value=" 가입취소 " class="btn" onclick="javascript:location.href='<%=cp%>';"/>
+					
 				</div>
 				<div id="memberCreated_message">
 				  <font color="blue">${message}</font>
