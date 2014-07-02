@@ -387,6 +387,7 @@
 				</div>
 	
 				<div id="memberCreated_footer">
+						
 					<input type="hidden" name="mode" value="${mode}"/>
 					
 					<input type="button" value=" 회원가입 " class="btn" onclick="memberOk();"/>

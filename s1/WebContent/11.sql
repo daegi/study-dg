@@ -14,6 +14,8 @@ CREATE TABLE bbs (
 create sequence seq_bbs;
 
 
+CREATE SEQUENCE seq_pds;
+
 
 --멤버테이블 작성
 DROP TABLE join_detail PURGE;
