@@ -81,11 +81,9 @@ public class pdsSer extends HttpServlet {
 			
 			if(req.getMethod().equalsIgnoreCase("get")){
 				category= URLDecoder.decode(category, "utf-8");
-				sear
-			}
 				
+			}
 			
-
 		}
 
 	}
