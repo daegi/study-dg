@@ -1,0 +1,40 @@
+-- DROP TABLE board PURGE;
+
+CREATE TABLE board (
+   num NUMBER NOT NULL
+   ,userId VARCHAR2(50) NOT NULL
+   ,subject  VARCHAR2(255) NOT NULL
+   ,content  VARCHAR2(4000) NOT NULL
+   ,groupNum NUMBER NOT NULL
+   ,depth    NUMBER(9) NOT NULL
+   ,orderNo  NUMBER(9) NOT NULL
+   ,parent   NUMBER NOT NULL
+   ,hitCount NUMBER DEFAULT 0
+   ,created  DATE DEFAULT SYSDATE
+   ,saveFileName  VARCHAR2(255)
+   ,originalFileName  VARCHAR2(255)
+   ,CONSTRAINT pk_board_num PRIMARY KEY(num)
+   ,CONSTRAINT fk_board_userId FOREIGN KEY(userId)
+                REFERENCES join_basic(userId)
+);
+
+parent 는 삭제 할때 편하게 하기 위해서
+
+-- 글리스트(로그인 사용자만)
+  cp/board/list.do
+-- 글등록(로그인 사용자만)
+  등록폼 : cp/board/created.do
+  저장 : cp/board/created_ok.do   --> 리스트로 리다이렉트
+-- 글보기(로그인 사용자만)
+  cp/board/article.do
+-- 글수정(글 등록자만)
+  수정폼 : cp/board/update.do
+  수정완료 : cp/board/update_ok.do   --> 리스트로 리다이렉트
+-- 답글(로그인 사용자만)
+  답변폼 : cp/board/reply.do
+  답변저장 : cp/board/reply_ok.do   --> 리스트로 리다이렉트
+-- 삭제(admin과 글 등록자만)
+  cp/board/delete.do
+-- 다운로드(로그인 사용자만)
+  cp/board/download.do
+
