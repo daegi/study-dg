@@ -17,6 +17,26 @@
 <link rel="stylesheet" href="<%=cp%>/data/css/layout.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/board/list.css" type="text/css"/>
 
+<script type="text/javascript">
+
+function categoryChange() {
+	var f=document.categoryForm;
+	
+	f.action="<%=cp%>/board/list.do";
+	
+	f.submit();
+}
+
+function searchList() {
+	var f=document.searchForm;
+	
+	f.action="<%=cp%>/board/list.do";
+	
+	f.submit();
+}
+
+</script>
+
 </head>
 
 <body>
@@ -36,14 +56,14 @@
 		<div id="bbsList">
 			<div id="bbsList_header">
 				<div id="leftHeader">
-				  <form name="searchForm" method="post" action="">
-					<select name="searchKey" class="selectField">
-						<option value="subject">제목</option>
-						<option value="name">작성자</option>
-						<option value="content">내용</option>
+				  <form name="searchForm" method="post" >
+				  <select id="category" name="category" class="selectField" onchange="categoryChange();">
+						<option value="제목"${category=="제목"?"selected='selected'":"" }>제목</option>
+						<option value="이름"${category=="이름"?"selected='selected'":"" }>작성자</option>
+						<option value="내용"${category=="내용"?"selected='selected'":"" }>내용</option>
 					</select>
 					<input type="text" name="searchValue" class="boxTF"/>
-					<input type="button" value=" 검 색 " class="btn" onclick=""/>
+					<input type="button" value=" 검 색 " class="btn" onclick="javascript:location.href='<%=cp%>/board/created.do';"/>
 				  </form>
 				</div>
 				<div id="rightHeader">
@@ -61,19 +81,19 @@
 					</dl>
 				</div>
 				<div id="lists">
+				<c:forEach var = "dto" items = "${list}">
 					<dl>
-						<dd class="num">1</dd>
-						<dd class="subject">스타일 마추기 힘들다......</dd>
-						<dd class="name">홍길동</dd>
-						<dd class="created">2000-10-10</dd>
-						<dd class="hitCount">10</dd>
+						<dd class="num">${dto.num}</dd>
+						<dd class="subject">${dto.content}</dd>
+						<dd class="name">${dto.userName}</dd>
+						<dd class="created">${dto.create}</dd>
+						<dd class="hitCount">${dto.hitCount}</dd>
 					</dl>
-
+				</c:forEach>
 				</div>
-				<div id="pageIndexList">
+				<div id="pageIndexList" align="center">
 					<p>
-						<a href="#">1</a>
-						<a href="#">2</a>
+						${pageIndexList}
 					</p>
 				</div>
 			</div>

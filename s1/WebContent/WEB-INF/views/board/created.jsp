@@ -65,7 +65,7 @@
 		</div>
 	
 		<div id="bbs">
-			<form name="boardForm" method="post" action="" onsubmit="return sendBoard();">
+			<form name="boardForm" method="post" action="" onsubmit="return sendBoard();" enctype="multipart/form-data">
 			<div id="bbsCreated">
 				<div class="bbsCreated_bottomLine">
 					<dl>

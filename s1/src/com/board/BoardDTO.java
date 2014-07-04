@@ -1,10 +1,36 @@
 package com.board;
 
 public class BoardDTO {
-	String userId, subject, content;
-	String created, saveFileName, originalFileName;
-	int num;
-	int groupNum, depth, orderNo, parent, hitCount;
+	private int num, listNum;
+	private String userName, userId, subject, content;
+	private String Created, category;
+	private int parent, hitCount;
+	private int groupNum, depth, orderNo;
+	private String saveFileName, originalFileName;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public int getListNum() {
+		return listNum;
+	}
+
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -31,35 +57,35 @@ public class BoardDTO {
 	}
 
 	public String getCreated() {
-		return created;
+		return Created;
 	}
 
 	public void setCreated(String created) {
-		this.created = created;
+		Created = created;
 	}
 
-	public String getSaveFileName() {
-		return saveFileName;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setSaveFileName(String saveFileName) {
-		this.saveFileName = saveFileName;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getOriginalFileName() {
-		return originalFileName;
+	public int getParent() {
+		return parent;
 	}
 
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
+	public void setParent(int parent) {
+		this.parent = parent;
 	}
 
-	public int getNum() {
-		return num;
+	public int getHitCount() {
+		return hitCount;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setHitCount(int hitCount) {
+		this.hitCount = hitCount;
 	}
 
 	public int getGroupNum() {
@@ -86,20 +112,19 @@ public class BoardDTO {
 		this.orderNo = orderNo;
 	}
 
-	public int getParent() {
-		return parent;
+	public String getSaveFileName() {
+		return saveFileName;
 	}
 
-	public void setParent(int parent) {
-		this.parent = parent;
+	public void setSaveFileName(String saveFileName) {
+		this.saveFileName = saveFileName;
 	}
 
-	public int getHitCount() {
-		return hitCount;
+	public String getOriginalFileName() {
+		return originalFileName;
 	}
 
-	public void setHitCount(int hitCount) {
-		this.hitCount = hitCount;
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
 	}
-
 }
