@@ -11,7 +11,7 @@ import com.util.DBConn;
 public class BoardDAO {
 	private Connection conn = DBConn.getConnection();
 
-	public int insertBoard(BoardDTO dto) {
+	public int insertBoard(BoardDTO dto, String mode) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -40,7 +40,11 @@ public class BoardDAO {
 			pstmt.setString(2, dto.getUserId());
 			pstmt.setString(3, dto.getSubject());
 			pstmt.setString(4, dto.getContent());
-			pstmt.setInt(5, maxNum);
+			
+			if (mode.equals("created")) {
+				pstmt.setInt(5, maxNum);				
+			}else
+				pstmt.setInt(5, dto.getGroupNum());
 			pstmt.setInt(6, dto.getDepth());
 			pstmt.setInt(7, dto.getOrderNo());
 			pstmt.setInt(8, dto.getParent());
@@ -267,6 +271,28 @@ public class BoardDAO {
 		}
 
 		return result;
+	}
+	
+	
+	public void updateOrderNo(int groupNum, int orderNo){
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			sql = "update board set orderNo = orderNo+1";
+			sql+="where groupNum=? and orderNo >?";
+			
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setInt(1, groupNum);
+			pstmt.setInt(2, orderNo);
+					
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
 	}
 
 }

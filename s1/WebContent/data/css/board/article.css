@@ -31,7 +31,7 @@
 #bbsArticle_header {
 	height:35px;
 	line-height:35px;
-	border-bottom:2px solid #DBDBDB;
+	border-bottom:2px solid #507CD1;
 	text-align:center;
 }
 
@@ -69,7 +69,7 @@
 
 #bbsArticle_content {
 	overflow: visible;
-	border-bottom:1px solid #DBDBDB;
+	border-bottom:1px solid #507CD1;
 	text-align:left;
     min-height:150px;
     padding: 20px 60px 20px 60px;

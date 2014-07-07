@@ -66,7 +66,7 @@ ul {
 
 td {font-size: 9pt;}
 
-.btn {font-size: 9pt; color:rgb(0,0,0); border:1px solid; border-color: #AAAAAA #AAAAAA #AAAAAA #AAAAAA; background-color:rgb(255, 255, 255); padding:0px 7px 3px 7px; font-family: 나눔고딕, 맑은 고딕, 굴림;}
+.btn {font-size: 9pt; color:rgb(0,0,0); border:1px solid; border-color: #AAAAAA; background-color:rgb(255, 255, 255); padding:0px 7px 3px 7px; font-family: 나눔고딕, 맑은 고딕, 굴림;}
 .btn1 {font-size: 9pt; color:rgb(0,0,0); background-color:rgb(245,245,245); line-height:16px; padding:1px 3px 1px 3px;}
 .btn2 {   
 	color:#000000;

@@ -171,7 +171,7 @@ public class BoardServlet extends HttpServlet {
 					dto.setSaveFileName(mreq.getFilesystemName("upload"));
 				}
 
-				dao.insertBoard(dto);
+				dao.insertBoard(dto, "created");
 			} catch (Exception e) {
 				resp.setContentType("text/html;charset=utf-8");
 				PrintWriter pw = resp.getWriter();
@@ -225,6 +225,77 @@ public class BoardServlet extends HttpServlet {
 			req.setAttribute("params", params);
 
 			forward(req, resp, "/WEB-INF/views/board/article.jsp");
+
+		} else if (uri.indexOf("reply.do") != -1) {
+
+			int num = Integer.parseInt(req.getParameter("num"));
+			String pageNum = req.getParameter("pageNum");
+
+			BoardDTO dto = dao.readBoard(num);
+			if (dto == null) { // 게싶물이 없으면 리스트로
+				resp.sendRedirect(cp + "/board/list.do?pageNum=pageNum");
+				return;
+			}
+
+			// 답변폼으로 포워딩
+			dto.setContent(dto.getSubject() + "답변입니다. \n");
+
+			req.setAttribute("mode", "reply");
+			req.setAttribute("dto", dto);
+			req.setAttribute("pageNum", pageNum);
+
+			String path = "/WEB-INF/views/board/created.jsp";
+			forward(req, resp, path);
+
+		} else if (uri.indexOf("reply_ok.do") != -1) {
+			// 답글 저장
+			
+			String pageNum = "1";
+			try {
+				MultipartRequest mreq = new MultipartRequest(req, pathname,
+						maxSize, encType, new DefaultFileRenamePolicy());
+
+				
+				pageNum = mreq.getParameter("pageNum");
+				
+				BoardDTO dto = new BoardDTO();
+
+				dto.setUserId(info.getUserId());
+				dto.setSubject(mreq.getParameter("subject"));
+				dto.setContent(mreq.getParameter("content"));
+				
+				int groupNum = Integer.parseInt(mreq.getParameter("groupNum"));
+				int depth = Integer.parseInt(mreq.getParameter("depth"));
+				int orderNo = Integer.parseInt(mreq.getParameter("orderNo"));
+				int parent = Integer.parseInt(mreq.getParameter("parent"));
+				
+				//orderNo 변경
+				
+				dao.updateOrderNo(groupNum, orderNo);
+				
+				dto.setGroupNum(groupNum); //부모의 그룹
+				dto.setDepth(depth+1);	//부모보다 1큼
+				dto.setOrderNo(orderNo+1);	//부모보다 1큼
+				dto.setParent(parent);	
+								
+
+				if (mreq.getFilesystemName("upload") != null
+						&& mreq.getFilesystemName("upload").length() != 0) {
+					dto.setOriginalFileName(mreq.getOriginalFileName("upload"));
+					dto.setSaveFileName(mreq.getFilesystemName("upload"));
+				}
+
+				dao.insertBoard(dto, "reply");
+			} catch (Exception e) {
+				resp.setContentType("text/html;charset=utf-8");
+				PrintWriter pw = resp.getWriter();
+				pw.print("<script>alert('파일용량은 최대 5MB입니다. !!!');history.back();</script>");
+				return;
+			}
+			
+			
+			
+			resp.sendRedirect(cp + "/board/list.do?pageNum="+pageNum);
 
 		}
 
