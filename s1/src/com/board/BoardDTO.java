@@ -3,9 +3,10 @@ package com.board;
 public class BoardDTO {
 	private int num, listNum;
 	private String userName, userId, subject, content;
-	private String Created, category;
-	private int parent, hitCount;
-	private int groupNum, depth, orderNo;
+	private String created;
+	private int  groupNum, depth, orderNo;
+	private int  parent, hitCount;
+	
 	private String saveFileName, originalFileName;
 
 	public int getNum() {
@@ -57,35 +58,11 @@ public class BoardDTO {
 	}
 
 	public String getCreated() {
-		return Created;
+		return created;
 	}
 
 	public void setCreated(String created) {
-		Created = created;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public int getParent() {
-		return parent;
-	}
-
-	public void setParent(int parent) {
-		this.parent = parent;
-	}
-
-	public int getHitCount() {
-		return hitCount;
-	}
-
-	public void setHitCount(int hitCount) {
-		this.hitCount = hitCount;
+		this.created = created;
 	}
 
 	public int getGroupNum() {
@@ -110,6 +87,22 @@ public class BoardDTO {
 
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
+	}
+
+	public int getParent() {
+		return parent;
+	}
+
+	public void setParent(int parent) {
+		this.parent = parent;
+	}
+
+	public int getHitCount() {
+		return hitCount;
+	}
+
+	public void setHitCount(int hitCount) {
+		this.hitCount = hitCount;
 	}
 
 	public String getSaveFileName() {
