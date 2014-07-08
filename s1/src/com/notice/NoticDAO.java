@@ -9,27 +9,25 @@ import com.util.DBCPConn;
 public class NoticDAO {
 	private Connection conn = DBCPConn.getConnection();
 
-	public int insertNotice(NoticeDTO dto, String mode) {
+	public int insertNotice(NoticeDTO dto) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql;
-		
+
 		try {
 			sql = "insert into notice(num, userId, subject, content, hitCount, created)"
-				+" values(seq_bbs.NEXTVAL,?,?,?,0,TO_CHAR(b.created, 'yyyy-MM-dd') as created)";
-			
-			pstmt.setString(1, dto.getSubject());
-	;
-			
+					+ " values(seq_bbs.NEXTVAL,?,?,?,0,TO_CHAR(created, 'yyyy-MM-dd'))";
+
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUserid());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+
 			result = pstmt.executeUpdate();
 			pstmt.close();
-			
+
 		} catch (Exception e) {
 		}
 		return result;
-
 	}
-
 }

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.board.BoardDTO;
 import com.member.SessionInfo;
+import com.util.MyUtil;
 
 @WebServlet("/notice/*")
 public class NoticeServlet extends HttpServlet {
@@ -33,7 +33,6 @@ public class NoticeServlet extends HttpServlet {
 
 	protected void forward(HttpServletRequest req, HttpServletResponse resp,
 			String path) throws ServletException, IOException {
-
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
 	}
@@ -45,14 +44,19 @@ public class NoticeServlet extends HttpServlet {
 		String uri = req.getRequestURI();
 		String cp = req.getContextPath();
 
+		NoticDAO dao = new NoticDAO();
+		MyUtil myutil = new MyUtil();
+
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("session");
 
 		if (info == null && uri.indexOf("list.do") == -1) {
-			String path = "WEB-INF/views/notice/list.jsp";
+			String path = "WEB-INF/views/notice/login.jsp";
 			forward(req, resp, path);
 			return;
-		} else if (uri.indexOf("list.do") != -1) {
+		}
+		
+		if (uri.indexOf("list.do") != -1) {
 
 			String path = "/WEB-INF/views/notice/list.jsp";
 			forward(req, resp, path);
