@@ -39,11 +39,15 @@
     	f.content.value = str;
     	
     	var mode="${mode}";
+    	
     	if(mode=="created") {
         	f.action = "<%=cp%>/board/created_ok.do";
     	}else if(mode=="reply") {
-        	f.action = "<%=cp%>/board/reply_ok.do";
+           	f.action = "<%=cp%>/board/reply_ok.do";
+    	}if(mode=="update") {
+        	f.action = "<%=cp%>/board/update_ok.do";
     	}
+    	
         // image 버튼, submit은 submit() 메소드 호출하면 두번전송
         return true;
     }
@@ -84,9 +88,8 @@
 							  <c:if test="${mode=='created' || mode=='reply' }">
 							        ${sessionScope.session.userName}
 							  </c:if>
-							  
-							  <c:if test="${mode =='update'}">
-							  ${dto.userNmae}
+							  <c:if test="${mode=='update'}">
+							        ${dto.userName}
 							  </c:if>
 						</dd>
 					</dl>
@@ -112,14 +115,19 @@
 			</div>
 
 			<div id="bbsCreated_footer">
+			    <c:if test="${mode=='reply'}">
+			    	<input type="hidden" name="groupNum"
+			    	           value="${dto.groupNum}"> 
+			    	<input type="hidden" name="depth"
+			    	           value="${dto.depth}"> 
+			    	<input type="hidden" name="orderNo"
+			    	           value="${dto.orderNo}"> 
+			    	<input type="hidden" name="parent"
+			    	           value="${dto.num}"> 
+			    	<input type="hidden" name="pageNum"
+			    	           value="${pageNum}"> 
+			    </c:if>
 			
-			<c:if test="${mode == 'reply' }">
-			<input type="hidden" name="groupNum" value="${gruoupNum}">
-			<input type="hidden" name="depth" value="${dto.depth}">
-			<input type="hidden" name="orderNo" value="${dto.orderNo}">
-			<input type="hidden" name="parent" value="${dto.parent}">
-			<input type="hidden" name="pageNum" value="${dto.pageNum}">
-			</c:if>
 				<input type="image" src="<%=cp%>/data/images/btn_submit.gif" />
         		<a href="javascript:location.href='<%=cp%>/board/list.do';"><img src="<%=cp%>/data/images/btn_cancel.gif" border="0"></a>
 			</div>

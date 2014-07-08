@@ -78,7 +78,7 @@ function searchList() {
 							<dd class="subject">
 							       <c:if test="${dto.depth > 0}">
 						               <c:forEach var="x" begin="1" end="${dto.depth}" step="1">
-						                    ${"&nbsp;"}
+						                    ${"&nbsp;&nbsp;"}
 						               </c:forEach>
 						               <img src='<%=cp%>/data/images/re.gif'/>
 				          		  </c:if>

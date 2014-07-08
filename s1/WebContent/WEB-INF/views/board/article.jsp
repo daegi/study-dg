@@ -74,8 +74,8 @@
 			<div id="bbsArticle_footer" style="margin-top: 8px;">
 				<div id="leftFooter">
 					   <input type="image" src="<%=cp%>/data/images/btn_reply.gif" onclick="javascript:location.href='<%=cp%>/board/reply.do?num=${dto.num}&pageNum=${pageNum}';"/>
-					   <input type="image" src="<%=cp%>/data/images/btn_modify.gif" onclick="javascript:location.href='<%=cp%>/board/modify.do?"/>
-					   <input type="image" src="<%=cp%>/data/images/btn_delete.gif" onclick="javascript:location.href='<%=cp%>/board/delete.do?"/>
+					   <input type="image" src="<%=cp%>/data/images/btn_modify.gif" onclick="javascript:location.href='<%=cp%>/board/update.do?num=${dto.num}&pageNum=${pageNum}';"/>
+					   <input type="image" src="<%=cp%>/data/images/btn_delete.gif" onclick=""/>
 				</div>
 				<div id="rightFooter">
 					   <input type="image" src="<%=cp%>/data/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/board/list.do?${params}';"/>

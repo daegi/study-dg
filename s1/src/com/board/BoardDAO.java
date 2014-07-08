@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.util.DBCPConn;
 import com.util.DBConn;
 
 public class BoardDAO {
-	private Connection conn = DBConn.getConnection();
+	// private Connection conn = DBConn.getConnection();
+	private Connection conn = DBCPConn.getConnection();
 
 	public int insertBoard(BoardDTO dto, String mode) {
 		int result = 0;
@@ -40,10 +42,10 @@ public class BoardDAO {
 			pstmt.setString(2, dto.getUserId());
 			pstmt.setString(3, dto.getSubject());
 			pstmt.setString(4, dto.getContent());
-			
+
 			if (mode.equals("created")) {
-				pstmt.setInt(5, maxNum);				
-			}else
+				pstmt.setInt(5, maxNum);
+			} else
 				pstmt.setInt(5, dto.getGroupNum());
 			pstmt.setInt(6, dto.getDepth());
 			pstmt.setInt(7, dto.getOrderNo());
@@ -219,7 +221,7 @@ public class BoardDAO {
 			sb.append("   WHERE num=?");
 
 			pstmt = conn.prepareStatement(sb.toString());
-	
+
 			pstmt.setString(1, dto.getSubject());
 			pstmt.setString(2, dto.getContent());
 			pstmt.setString(3, dto.getSaveFileName());
@@ -272,27 +274,26 @@ public class BoardDAO {
 
 		return result;
 	}
-	
-	
-	public void updateOrderNo(int groupNum, int orderNo){
+
+	public void updateOrderNo(int groupNum, int orderNo) {
 		PreparedStatement pstmt = null;
 		String sql;
-		
+
 		try {
 			sql = "update board set orderNo = orderNo+1";
-			sql+="where groupNum=? and orderNo >?";
-			
-			pstmt = conn.prepareStatement(sql);	
+			sql += "where groupNum=? and orderNo >?";
+
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, groupNum);
 			pstmt.setInt(2, orderNo);
-					
+
 			pstmt.executeUpdate();
 			pstmt.close();
-			
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		
+
 	}
 
 }
