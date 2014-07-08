@@ -66,7 +66,7 @@
 						<dl>
 							<dt>제목</dt>
 							<dd>
-								<input type="text" name="subject" maxlength="100" class="boxTF"	value="">
+								<input type="text" name="subject" size="74" maxlength="100" class="boxTF"	value="">
 							</dd>
 						</dl>
 					</div>
