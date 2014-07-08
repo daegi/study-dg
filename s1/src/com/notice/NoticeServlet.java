@@ -45,8 +45,6 @@ public class NoticeServlet extends HttpServlet {
 		String uri = req.getRequestURI();
 		String cp = req.getContextPath();
 
-		BoardDTO dto = new BoardDTO();
-
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("session");
 
@@ -54,23 +52,17 @@ public class NoticeServlet extends HttpServlet {
 			String path = "WEB-INF/views/notice/list.jsp";
 			forward(req, resp, path);
 			return;
-		}else if (uri.indexOf("list.do") != -1) {
-			
+		} else if (uri.indexOf("list.do") != -1) {
+
 			String path = "/WEB-INF/views/notice/list.jsp";
 			forward(req, resp, path);
 
 		} else if (uri.indexOf("created.do") != -1) {
-			
-			
+
 			req.setAttribute("mode", "created");
 
 			String path = "WEB-INF/views/notice/created.jsp";
 			forward(req, resp, path);
-		} else if (uri.indexOf("created_ok.do") != -1) {
-
 		}
-		resp.sendRedirect(cp + "/notice/list.do");
-
 	}
-
 }

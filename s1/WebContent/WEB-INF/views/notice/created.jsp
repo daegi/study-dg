@@ -15,8 +15,8 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-function sendBoard() {
-    var f = document.boardForm;
+function sendNotice() {
+    var f = document.noticeForm;
 
 	var str = f.subject.value;
     if(!str) {
@@ -52,7 +52,7 @@ function sendBoard() {
 <body>
 
 
-	<form name="noticForm" method="post" onsubmit="return sendBoard()">
+	<form name="noticForm" method="post" onsubmit="return sendNotice()">
 		<table>
 			<tr>
 				<td>제목</td>
@@ -62,6 +62,9 @@ function sendBoard() {
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" value=""></td>
+				<c:if test="${mode=='created' || mode=='update' }">
+							        ${sessionScope.session.userName}
+							  </c:if>
 			</tr>
 
 			<tr>
@@ -75,11 +78,10 @@ function sendBoard() {
 			</tr>
 
 			<tr id="noticeCreated_footer" align="center">
-				<td>
-				<input type="image"	src="<%=cp%>/data/images/btn_submit.gif" /> 
-					<a href="javascript:location.href='<%=cp%>/notic/list.do':"> 
-					<%-- <img src="<%=cp%>/data/images/btn_cancel.gif"> --%>
-					
+				<td><input type="image"
+					src="<%=cp%>/data/images/btn_submit.gif" /> <a
+					href="javascript:location.href='<%=cp%>/notic/list.do':"> <%-- <img src="<%=cp%>/data/images/btn_cancel.gif"> --%>
+
 				</a></td>
 
 			</tr>
