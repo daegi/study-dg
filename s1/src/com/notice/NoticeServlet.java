@@ -63,7 +63,7 @@ public class NoticeServlet extends HttpServlet {
 
 		if (uri.indexOf("list.do") != -1) {
 
-			int current_page = 1;
+			/*int current_page = 1;
 			String pageNum = req.getParameter("pageNum");
 			if (pageNum != null)
 				current_page = Integer.parseInt(pageNum);
@@ -95,7 +95,7 @@ public class NoticeServlet extends HttpServlet {
 			req.setAttribute("list", list);
 			// req.setAttribute("articleUrl", articleUrl);
 			req.setAttribute("pager", pager);
-
+*/
 			String path = "/WEB-INF/views/notice/list.jsp";
 			forward(req, resp, path);
 
