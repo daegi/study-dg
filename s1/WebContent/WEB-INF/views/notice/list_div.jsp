@@ -16,27 +16,23 @@
 	type="text/css" />
 
 <style type="text/css">
-
-#noticeList {
-	width:690px;
-	margin:30px auto;
-	text-align:left;
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-#leftHeader{
-	float:left;
-	width:345px;
-	text-align:left;
-}
-#rightHeader{
-	float:right;
-	width:345px;
-	text-align:right;
-	margin-top: 8px;
+#noticeList{
+border: 1px dotted #0dddd;
+flaot:left;
+
 }
 
+dt{
 
+border: 1px dotted;
+float: left;
 
+}
 </style>
 </head>
 <body>
@@ -44,36 +40,34 @@
 		<div class="layoutHeader">
 			<jsp:include page="/layout/header.jsp"></jsp:include>
 		</div>
-
-
 		<div class="layoutBody">
 			<h2>공지사항</h2>
 			<div id="noticeList">
 				<div id="notice_Hearder">
-					<div id="notice_Hearder_left">검색</div>
-					<div id="notice_Hearder_right">
+					<div id="leftHeader">검색</div>
+					<div id="rightHeader">
 						<input type="image" src="<%=cp%>/data/images/btn_write.gif"
 							onclick="javascript:location.href='<%=cp%>/notice/created.do';" />
 					</div>
-					<div id="noticelist_list">
-						<div id="title">
-							<dl>
-								<dt class="num">번호</dt>
-								<dt class="subject">제목</dt>
-								<dt class="name">작성자</dt>
-								<dt class="created">작성일</dt>
-								<dt class="hitCount">조회수</dt>
-							</dl>
-						</div>
-						<div id="lists">
-							<dl>
-								<dd class="num"></dd>
-								<dd class="subject"></dd>
-								<dd class="name"></dd>
-								<dd class="created"></dd>
-								<dd class="hitCount"></dd>
-							</dl>
-						</div>
+				</div>
+				<div id="noticeList_list">
+					<div id="title">
+						<dl>
+							<dt class="num">번호</dt>
+							<dt class="subject">제목</dt>
+							<dt class="name">작성자</dt>
+							<dt class="created">작성일</dt>
+							<dt class="hitCount">조회수</dt>
+						</dl>
+					</div>
+					<div id="lists">
+						<dl>
+							<dd class="num"></dd>
+							<dd class="subject"></dd>
+							<dd class="name"></dd>
+							<dd class="created"></dd>
+							<dd class="hitCount"></dd>
+						</dl>
 					</div>
 				</div>
 			</div>

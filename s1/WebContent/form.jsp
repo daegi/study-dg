@@ -12,8 +12,13 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="<%=cp%>/data/css/style.css" type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/data/css/layout.css"
-	type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/data/css/layout.css" type="text/css" />
+
+<style type="text/css">
+
+
+
+</style>
 
 <script type="text/javascript" src="<%=cp%>/data/js/util.js"></script>
 <script type="text/javascript">
