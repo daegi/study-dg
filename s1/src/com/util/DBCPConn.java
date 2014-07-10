@@ -21,6 +21,10 @@ public class DBCPConn {
 				Context context = (Context) ctx.lookup("java:/comp/env");
 				// 이름으로 찾은 객체를 리턴 받음
 				DataSource ds = (DataSource) context.lookup("jdbc/myoracle");
+				
+				//DataSource ds = (DataSource) context.lookup("jdbc/homeoracle");
+				
+				
 				// DataSource ds = (DataSource) ctx.lookup(
 				// "java:comp/env/jdbc/myoracle");
 
