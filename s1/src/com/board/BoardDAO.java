@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.util.DBConn;
+import com.util.DBCPConn;
 
 public class BoardDAO {
-	private Connection conn=DBConn.getConnection();
-	//private Connection conn=DBCPConn.getConnection();
+	//private Connection conn=DBConn.getConnection();
+	private Connection conn=DBCPConn.getConnection();
 	
 	// 글쓰기 및 답변 저장
 	public int insertBoard(BoardDTO dto, String mode) {

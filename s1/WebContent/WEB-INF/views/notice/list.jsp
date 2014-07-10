@@ -106,7 +106,7 @@
    </tr>
 </table>
 
-				<div id="pageIndexList">
+				<div id="pageIndexList" align="center">
 					<p>
 						<c:if test="${dataCount==0}">
 							등록된 게시물이 없습니다.

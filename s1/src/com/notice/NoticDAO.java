@@ -6,13 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.board.BoardDTO;
-import com.member.SessionInfo;
-import com.util.DBConn;
+import com.util.DBCPConn;
 
 public class NoticDAO {
-	// private Connection conn = DBCPConn.getConnection();
-	private Connection conn = DBConn.getConnection();
+	private Connection conn = DBCPConn.getConnection();
+	//private Connection conn = DBConn.getConnection();
 
 	public int insertNotice(NoticeDTO dto) {
 		int result = 0;
