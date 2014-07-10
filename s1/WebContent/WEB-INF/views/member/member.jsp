@@ -391,7 +391,7 @@
 					
 					<input type="button" value=" ${mode=='created'?'회원가입':'정보수정' } " class="btn" onclick="memberOk();"/>
 					<input type="reset" value=" 다시입력 " class="btn" onclick="document.memberForm.userId"/>
-					<input type="button" value=" ${mode=='created'?'가입취소':'수정취소' " class="btn" onclick="javascript:location.href='<%=cp%>';"/>
+					<input type="button" value=" ${mode=='created'?'가입취소':'수정취소'} " class="btn" onclick="javascript:location.href='<%=cp%>';"/>
 					
 				</div>
 				<div id="memberCreated_message">

@@ -21,4 +21,49 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+
+	<context-param>
+		<param-name>city</param-name>
+		<param-value>서울</param-value>
+	</context-param>
+
+
+	<servlet>
+		<servlet-name>testServlet</servlet-name>
+		<servlet-class>com.svt.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>testServlet</servlet-name>
+		<url-pattern>/exam1</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>examServlet</servlet-name>
+		<servlet-class>com.svt.ExamServlet</servlet-class>
+
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>홍길동</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>age</param-name>
+			<param-value>20</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>examServlet</servlet-name>
+		<url-pattern>/exam2</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>timerFilter</filter-name>
+		<filter-class>com.util.TimerFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>timerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

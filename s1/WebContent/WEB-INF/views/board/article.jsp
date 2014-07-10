@@ -16,6 +16,31 @@
 <link rel="stylesheet" href="<%=cp%>/data/css/style.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/layout.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/data/css/board/article.css" type="text/css"/>
+
+<script type="text/javascript">
+<c:if test="${sessionScope.session.userId=='admin' || sessionScope.session.userId==dto.userId}">
+    function deleteBoard() {
+        var num = "${dto.num}";
+        var pageNum = "${pageNum}";
+        var str = "num="+num+"&pageNum="+pageNum;
+        var url = "<%=cp%>/board/delete.do?" + str;
+        
+        if(confirm("삭제 하시겠습니까 ? "))
+            location.href=url;
+    }
+</c:if>
+
+<c:if test="${sessionScope.session.userId==dto.userId}">
+    function updateBoard() {
+        var num = "${dto.num}";
+        var pageNum = "${pageNum}";
+        var str = "num="+num+"&pageNum="+pageNum;
+        var url = "<%=cp%>/board/update.do?" + str;
+
+        location.href=url;
+    }
+</c:if>
+</script>
 </head>
 
 <body>
@@ -64,18 +89,28 @@
 					</c:if>
 				</div>
 				<div class="bbsArticle_bottomLine">
-					이전글 : 작업중
+					이전글 :
+					<c:if test="${not empty preDto}">
+		                <a href="<%=cp%>/board/article.do?${params}&num=${preDto.num}">${preDto.subject}</a>
+					 </c:if>
 				</div>
 				<div class="bbsArticle_noLine">
-					다음글 : 작업중
+					다음글 :
+					<c:if test="${not empty nextDto}">
+		                <a href="<%=cp%>/board/article.do?${params}&num=${nextDto.num}">${nextDto.subject}</a>
+					 </c:if>
 				</div>
 			</div>
 			
 			<div id="bbsArticle_footer" style="margin-top: 8px;">
 				<div id="leftFooter">
 					   <input type="image" src="<%=cp%>/data/images/btn_reply.gif" onclick="javascript:location.href='<%=cp%>/board/reply.do?num=${dto.num}&pageNum=${pageNum}';"/>
-					   <input type="image" src="<%=cp%>/data/images/btn_modify.gif" onclick="javascript:location.href='<%=cp%>/board/update.do?num=${dto.num}&pageNum=${pageNum}';"/>
-					   <input type="image" src="<%=cp%>/data/images/btn_delete.gif" onclick=""/>
+			<c:if test="${sessionScope.session.userId==dto.userId}">
+					   <input type="image" src="<%=cp%>/data/images/btn_modify.gif" onclick="updateBoard();"/>
+			</c:if>
+			<c:if test="${sessionScope.session.userId=='admin' || sessionScope.session.userId==dto.userId}">
+					   <input type="image" src="<%=cp%>/data/images/btn_delete.gif" onclick="deleteBoard();"/>
+			</c:if>					   
 				</div>
 				<div id="rightFooter">
 					   <input type="image" src="<%=cp%>/data/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/board/list.do?${params}';"/>

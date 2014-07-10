@@ -3,7 +3,7 @@ package com.util;
 import java.sql.Connection;
 import javax.sql.DataSource;
 import javax.naming.InitialContext;
-//import javax.naming.NamingException;
+
 import javax.naming.Context;
 
 public class DBCPConn {

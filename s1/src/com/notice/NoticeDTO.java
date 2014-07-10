@@ -1,8 +1,17 @@
 package com.notice;
 
 public class NoticeDTO {
-	private String userId, subject, content, Created;
+	private String userId, userName, subject, content, Created;
 	private int num, hitCount;
+	
+	
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getUserId() {
 		return userId;
 	}

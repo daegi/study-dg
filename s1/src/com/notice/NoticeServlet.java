@@ -3,7 +3,6 @@ package com.notice;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -50,7 +49,7 @@ public class NoticeServlet extends HttpServlet {
 		String cp = req.getContextPath();
 
 		NoticDAO dao = new NoticDAO();
-		MyUtil util = new MyUtil();
+		MyUtil myUtil = new MyUtil();
 
 		HttpSession session = req.getSession();
 		SessionInfo info = (SessionInfo) session.getAttribute("session");
@@ -63,39 +62,69 @@ public class NoticeServlet extends HttpServlet {
 
 		if (uri.indexOf("list.do") != -1) {
 
-			/*int current_page = 1;
+			// 넘어온 페이지 번호
 			String pageNum = req.getParameter("pageNum");
-			if (pageNum != null)
+			int current_page = 1;
+			if (pageNum != null && pageNum.length() != 0) // 넘어온 페이지가 있으면
 				current_page = Integer.parseInt(pageNum);
 
+			String searchKey = req.getParameter("searchKey");
+			String searchValue = req.getParameter("searchValue");
+			if (searchKey == null) {
+				searchKey = "subject";
+				searchValue = "";
+			}
+			if (req.getMethod().equalsIgnoreCase("GET")) {
+				searchValue = URLDecoder.decode(searchValue, "utf-8");
+			}
 
-			// 전체페이지수
-			int numPerPage = 2;
-			int total_page = util.getPageCount(numPerPage, dataCount);
+			// 전체 데이터 개수 구하기
+			int dataCount;
+			dataCount = dao.dataCount(searchKey, searchValue);
 
+			// 전체 페이지수 구하기
+			int numPerPage = 10; // 한페이지 표시할 데이터 개수
+			int total_page = myUtil.getPageCount(numPerPage, dataCount);
+
+			// 전체 페이지 보다 표시할 페이지가 큰경우 전체 페이지로
 			if (current_page > total_page)
 				current_page = total_page;
 
-			// 게시물 가져올 시작과 끝 위치
+			// 테이블에서 가져올 시작과 끝 위치
 			int start = (current_page - 1) * numPerPage + 1;
 			int end = current_page * numPerPage;
 
-			// 게시물 가져오기
-			List<NoticeDTO> list = dao.getListNotice(start, end);
+			// 테이블의 데이터를 가져 온다.
+			List<NoticeDTO> list;
+			list = dao.getListBoard(start, end, searchKey, searchValue);
 
+			String params = "";
+			if (searchValue != null && searchValue.length() != 0) {
+				searchValue = URLEncoder.encode(searchValue, "utf-8");
+				params = "searchKey=" + searchKey + "&searchValue="
+						+ searchValue;
+			}
+
+			// 페이징처리
 			String listUrl = cp + "/notice/list.do";
-			// String articleUrl=cp+"/notice/article.do?pageNum="+current_page;
+			String articleUrl = cp + "/notice/article.do?pageNum="
+					+ current_page;
+			if (params.length() != 0) {
+				listUrl += "?" + params;
+				articleUrl = articleUrl + "&" + params;
+			}
 
-			// 페이징
-			String pager = util
-					.pageIndexList(current_page, total_page, listUrl);
+			String pageIndexList = myUtil.pageIndexList(current_page,
+					total_page, listUrl);
 
-			// 포워딩 페이지에 값 전달하기
-			req.setAttribute("pageNum", current_page);
-			req.setAttribute("list", list);
-			// req.setAttribute("articleUrl", articleUrl);
-			req.setAttribute("pager", pager);
-*/
+			// list.jsp 파일에 데이터를 넘겨 준다.
+			req.setAttribute("list", list); // 데이터
+			req.setAttribute("pageIndexList", pageIndexList); // 페이지리스트
+			req.setAttribute("pageNum", current_page); // 현페이지
+			req.setAttribute("dataCount", dataCount); // 전체개수
+			req.setAttribute("articleUrl", articleUrl);
+
+			// jsp로 포워딩
 			String path = "/WEB-INF/views/notice/list.jsp";
 			forward(req, resp, path);
 
@@ -113,12 +142,83 @@ public class NoticeServlet extends HttpServlet {
 			dto.setSubject(req.getParameter("subject"));
 			dto.setContent(req.getParameter("content"));
 
-			dto.setUserId(info.getUserId());
+			// dto.setUserId(info.getUserId());
+			dto.setUserName(dto.getUserName());
 
 			dto.setHitCount(0);
 
 			dao.insertNotice(dto);
 
+			resp.sendRedirect(cp + "/notice/list.do");
+		} else if (uri.indexOf("article.do") != -1) {
+
+			String pageNum = req.getParameter("pageNum");
+			int num = Integer.parseInt(req.getParameter("num"));
+
+			String searchKey = req.getParameter("searchKey");
+			String searchValue = req.getParameter("searchValue");
+			if (searchKey == null) {
+				searchKey = "subject";
+				searchValue = "";
+			}
+
+			if (req.getMethod().equalsIgnoreCase("get")) {
+				searchValue = URLDecoder.decode(searchValue, "utf-8");
+			}
+
+			dao.updateHitCount(num);
+
+			NoticeDTO dto = dao.readNotice(num);
+			if (dto == null) {
+				resp.sendRedirect(cp + "/notice/list.do?pageNum=" + pageNum);
+				return;
+			}
+
+			// 줄수
+			int linesu = dto.getContent().split("\n").length;
+
+			// 엔터를 <br/>로
+			dto.setContent(dto.getContent().replaceAll("\n", "<br/>"));
+
+			// 글보기에서 글리스트로 갈때 넘길 파라미터
+			String params = "pageNum=" + pageNum;
+			if (searchValue.length() != 0) {
+				params += "&searchKey=" + searchKey;
+				params += "&searchValue="
+						+ URLEncoder.encode(searchValue, "UTF-8");
+			}
+
+			// 포워딩 페이지에 값 넘기기
+			req.setAttribute("dto", dto);
+			req.setAttribute("pageNum", pageNum);
+			req.setAttribute("linesu", linesu);
+			req.setAttribute("params", params);
+
+			// 포워딩
+			String path = "/WEB-INF/views/notice/article.jsp";
+			forward(req, resp, path);
+
+		} else if (uri.indexOf("article_ok.do") != -1) {
+
+			// 파라미터 받기
+			NoticeDTO dto = new NoticeDTO();
+			dto.setSubject(req.getParameter("subject"));
+			dto.setContent(req.getParameter("content"));
+
+			dto.setHitCount(0);
+
+			// 저장하기
+			dao.insertNotice(dto);
+
+			resp.sendRedirect(cp + "/notice/list.do");
+		} else if (uri.indexOf("update.do") != -1) {
+			
+
+		} else if (uri.indexOf("update.do") != -1) {
+
+			resp.sendRedirect(cp + "/notice/list.do?pageNum=pageNum");
+		} else if (uri.indexOf("delete_ok.do") != -1) {
+			
 			resp.sendRedirect(cp + "/notice/list.do");
 		}
 	}

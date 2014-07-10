@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>게 시 판</title>
+<title>공지</title>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
 
 <link rel="stylesheet" href="<%=cp%>/data/css/style.css" type="text/css" />
@@ -45,25 +45,21 @@
 	.btn {font-size: 9pt; color:rgb(0,0,0); border:1px solid; border-color:#AAAAAA; background-color:rgb(255, 255, 255); padding:0px 7px 3px 7px; font-family: 나눔고딕, 맑은 고딕, 굴림;}
 </style>
 
-<script type="text/javascript">
-function searchList() {
-	
-}
-</script>
 
 </head>
 
 <body>
 
-<div class="layoutMain">
+	<div class="layoutMain">
 		<div class="layoutHeader">
 			<jsp:include page="/layout/header.jsp"></jsp:include>
 		</div>
+	</div>
 
-<table width="650" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto;">
+	<table width="650" border="0" cellspacing="0" cellpadding="0" style="margin: 0px auto;">
 <tr height="40">
 	<td align="left" class="title">
-		<img src="<%=cp%>/data/images/arrow.gif" width="11" height="11" alt="" style="padding-left: 5px; padding-right: 5px;" />게시판
+		<img src="<%=cp%>/data/images/arrow.gif" width="11" height="11" alt="" style="padding-left: 5px; padding-right: 5px;" />공지
 	</td>
 </tr>
 </table>
@@ -79,26 +75,28 @@ function searchList() {
    </tr>
 </table>
 
-<table width="650" border="0" cellspacing="1" cellpadding="0"
-   bgcolor="#cccccc" style="margin: 0px auto;">
-  <tr align="center" bgcolor="#e6e4e6" height="25"> 
-      <td width="50">번호</td>
-      <td width="390">제목</td>
-      <td width="90">작성자</td>
-      <td width="70">작성일</td>
-      <td width="50">조회수</td>
-  </tr>
- 
-  <tr align="center" bgcolor="#ffffff" height="25"> 
-      <td align="center">1</td>
-      <td align="left" style="padding-left: 10px;">테스트</td>
-      <td align="center">홍길동</td>
-      <td align="center">2000-10-10</td>
-      <td align="center">10</td>
-  </tr>
- 
- </table>
-<table width="650" cellspacing="0" cellpadding="0" style="margin: 0px auto;">
+	<table width="650" border="0" cellspacing="1" cellpadding="0"
+		bgcolor="#cccccc" style="margin: 0px auto;">
+		<tr align="center" bgcolor="#e6e4e6" height="25">
+			<td width="50">번호</td>
+			<td width="390">제목</td>
+			<td width="90">작성자</td>
+			<td width="70">작성일</td>
+			<td width="50">조회수</td>
+		</tr>
+
+		<c:forEach var="dto" items="${list}">
+			<tr align="center" bgcolor="#ffffff" height="25">
+				<td align="center">${dto.num}</td>
+				<td align="left" style="padding-left: 10px;"><a href="${articleUrl}&num=${dto.num}">${dto.subject}</a></td>
+				<td align="center">${dto.userName}</td>
+				<td align="center">${dto.created }</td>
+				<td align="center">${dto.hitCount}</td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	<table width="650" cellspacing="0" cellpadding="0" style="margin: 0px auto;">
    <tr height="30">
       <td align="left" width="50%">&nbsp;</td>
       <td align="right">
@@ -107,6 +105,20 @@ function searchList() {
       </td>
    </tr>
 </table>
+
+				<div id="pageIndexList">
+					<p>
+						<c:if test="${dataCount==0}">
+							등록된 게시물이 없습니다.
+						</c:if>
+						<c:if test="${dataCount!=0}">
+							${pager}
+						</c:if>
+					</p>
+				</div>
+
+
+
 
 
 

@@ -44,8 +44,8 @@
         	f.action = "<%=cp%>/board/created_ok.do";
     	}else if(mode=="reply") {
            	f.action = "<%=cp%>/board/reply_ok.do";
-    	}if(mode=="update") {
-        	f.action = "<%=cp%>/board/update_ok.do";
+    	}else if(mode=="update") {
+           	f.action = "<%=cp%>/board/update_ok.do";
     	}
     	
         // image 버튼, submit은 submit() 메소드 호출하면 두번전송
@@ -124,6 +124,17 @@
 			    	           value="${dto.orderNo}"> 
 			    	<input type="hidden" name="parent"
 			    	           value="${dto.num}"> 
+			    	<input type="hidden" name="pageNum"
+			    	           value="${pageNum}"> 
+			    </c:if>
+
+			    <c:if test="${mode=='update'}">
+			    	<input type="hidden" name="num"
+			    	           value="${dto.num}"> 
+			    	<input type="hidden" name="saveFileName"
+			    	           value="${dto.saveFileName}"> 
+			    	<input type="hidden" name="originalFileName"
+			    	           value="${dto.originalFileName}"> 
 			    	<input type="hidden" name="pageNum"
 			    	           value="${pageNum}"> 
 			    </c:if>
