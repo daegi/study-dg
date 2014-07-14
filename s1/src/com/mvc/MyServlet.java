@@ -100,10 +100,10 @@ public class MyServlet extends HttpServlet {
 		Iterator<Object> it = p.keySet().iterator();
 		while (it.hasNext()) {
 			String k = (String) it.next();
-			String classname = p.getProperty(k).trim();
+			String className = p.getProperty(k).trim();
 
 			try {
-				Class<?> cls = Class.forName(classname);
+				Class<?> cls = Class.forName(className);
 				Object o = cls.newInstance();
 
 			} catch (Exception e) {
