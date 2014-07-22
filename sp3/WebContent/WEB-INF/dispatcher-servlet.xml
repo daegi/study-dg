@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+	
+	<!-- 어노테이션 사용 설정, scoped-proxy="no" 프록시를 생성하지 않을 경우 설정(기본:no) -->
+	<!-- <context:component-scan> 태그를 이용하여 @Controller 등의 어노테이션을 적용한 클래스를 자동으로 로딩. -->
+	<context:component-scan base-package="*" scoped-proxy="no"/>
+ 
+	<!-- 어노테이션을 이용한  컨트롤러 등록 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"
+	      p:alwaysUseFullPath="true">
+		<property name="order" value="1"></property>
+	</bean>
+	 
+	<!-- Commander의 처리 결과를 보여줄 View를 결정한다. -->
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/views/" /> 
+       <property name="suffix" value=".jsp" /> 
+   </bean>
+ </beans>  
