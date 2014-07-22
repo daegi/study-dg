@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="score">
+
+	<!-- #{hak}은 PreparedStatement 의 setterd에 전달할 파라미터로 com.sp.score.Score에 
+		있는 필드와 동일해야 함 -->
+
+	<insert id="insertScore" parameterType="com.sp.score.Score">
+		insert into score(hak,
+		name, birth, kor, eng, mat)
+		values(#{hak}, #{name}, #{birth}, #{kor},
+		#{eng}, #{mat})
+	</insert>
+
+	<select id="listScore" parameterType="map" resultType="com.sp.score.Score">
+
+		select*from(
+		select ROW_NUMBER() OVER(order by hak asc) rnum,
+		hak, name,
+		TO_CHAR(birth, 'YYYY-MM-DD')birth, kor, eng, mat,
+		(kor+eng+mat)tot,
+		(kor+eng+mat)/3 ave,
+		rank() over(order by (kor+eng+mat) DESC) rank
+		from
+		score
+<![CDATA[
+)where rnum>=#{start} and rnum<=#{end} 
+]]> <!-- cdata 는 < &lt 이런거 처리하기 위해서 안에다 씌우면 됨 -->
+		order by hak asc
+	</select>
+
+
+	<select id="dataCount" resultType="int">
+		SELECT NVL (COUNT (*), 0) FROM
+		score
+	</select>
+
+	<select id="readScore" resultType="com.sp.score.Score"
+		parameterType="String">
+
+		select hak, name, TO_CHAR(birth, 'YYYY-MM-DD')birth,
+		kor, eng, mat from score where hak = #{hak}
+	</select>
+
+	<update id="updateScore" parameterType="com.sp.score.Score">
+		update score set name =
+		#{name}, birth = #{birth},
+		kor = #{kor}, eng= #{eng}, mat = #{mat}
+		where hak = #{hak}
+	</update>
+
+
+	<delete id="deleteScore" parameterType="com.sp.score.Score">
+		delete from score where hak = #{hak}
+	</delete>
+
+	<!-- 1. 삭제버튼 처리 할것 2. 학번앞에 checkbox 넣어서 삭제 처리(구글링) 3. 수정을 누루면 마이바티스 인처리??? -->
+</mapper>
