@@ -13,7 +13,7 @@ public class BoardDAO {
 	private Connection conn=DBCPConn.getConnection();
 	
 	// 글쓰기 및 답변 저장
-	public int insertBoard(BoardDTO dto, String mode) {
+	public int insertBoard(ReviewsDTO dto, String mode) {
 		int result=0;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -92,8 +92,8 @@ public class BoardDAO {
     }
 
     // 글 리스트
-    public List<BoardDTO> getListBoard(int start, int end, String searchKey, String searchValue) {
-        List<BoardDTO> list=new ArrayList<BoardDTO>();
+    public List<ReviewsDTO> getListBoard(int start, int end, String searchKey, String searchValue) {
+        List<ReviewsDTO> list=new ArrayList<ReviewsDTO>();
 
         PreparedStatement pstmt=null;
         ResultSet rs=null;
@@ -125,7 +125,7 @@ public class BoardDAO {
             rs=pstmt.executeQuery();
             
             while(rs.next()) {
-                BoardDTO dto=new BoardDTO();
+                ReviewsDTO dto=new ReviewsDTO();
 				dto.setNum(rs.getInt("num"));
 				dto.setUserId(rs.getString("userId"));
 				dto.setUserName(rs.getString("userName"));
@@ -147,8 +147,8 @@ public class BoardDAO {
     }
     
     // 해당 게시물 읽기
-	public BoardDTO readBoard(int num) {
-		BoardDTO dto = null;
+	public ReviewsDTO readBoard(int num) {
+		ReviewsDTO dto = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuffer sb=new StringBuffer();
@@ -164,7 +164,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 			
 			if( rs.next()) {
-				dto = new BoardDTO();
+				dto = new ReviewsDTO();
 				dto.setNum(rs.getInt("num"));
 				dto.setUserId(rs.getString("userId"));
 				dto.setUserName(rs.getString("userName"));
@@ -231,8 +231,8 @@ public class BoardDAO {
 	}
 	
     // 이전글
-    public BoardDTO preReadBoard(String searchKey, String searchValue, int groupNum, int orderNo) {
-        BoardDTO dto=null;
+    public ReviewsDTO preReadBoard(String searchKey, String searchValue, int groupNum, int orderNo) {
+        ReviewsDTO dto=null;
 
         PreparedStatement pstmt=null;
         ResultSet rs=null;
@@ -270,7 +270,7 @@ public class BoardDAO {
             rs=pstmt.executeQuery();
 
             if(rs.next()) {
-                dto=new BoardDTO();
+                dto=new ReviewsDTO();
                 dto.setNum(rs.getInt("num"));
                 dto.setUserId(rs.getString("userId"));
                 dto.setSubject(rs.getString("subject"));
@@ -285,8 +285,8 @@ public class BoardDAO {
     }
 
     // 다음글
-    public BoardDTO nextReadBoard(String searchKey, String searchValue, int groupNum, int orderNo) {
-        BoardDTO dto=null;
+    public ReviewsDTO nextReadBoard(String searchKey, String searchValue, int groupNum, int orderNo) {
+        ReviewsDTO dto=null;
 
         PreparedStatement pstmt=null;
         ResultSet rs=null;
@@ -324,7 +324,7 @@ public class BoardDAO {
             rs=pstmt.executeQuery();
 
             if(rs.next()) {
-                dto=new BoardDTO();
+                dto=new ReviewsDTO();
                 dto.setNum(rs.getInt("num"));
                 dto.setUserId(rs.getString("userId"));
                 dto.setSubject(rs.getString("subject"));
@@ -339,7 +339,7 @@ public class BoardDAO {
     }
 
     // 게시물 수정
-	public int updateBoard(BoardDTO dto) {
+	public int updateBoard(ReviewsDTO dto) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql;

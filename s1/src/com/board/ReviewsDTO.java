@@ -1,6 +1,6 @@
 package com.board;
 
-public class BoardDTO {
+public class ReviewsDTO {
 	private int num, listNum;
 	private String userName, userId, subject, content;
 	private String created;

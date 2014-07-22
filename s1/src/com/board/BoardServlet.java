@@ -100,14 +100,14 @@ public class BoardServlet extends HttpServlet {
 			int end = current_page * numPerPage;
 			
 			// 테이블의 데이터를 가져 온다.
-			List<BoardDTO> list;
+			List<ReviewsDTO> list;
 			list= dao.getListBoard(start, end, searchKey, searchValue);
 			
 	        // 리스트의 번호
 	        int listNum, n = 0;
-	        Iterator<BoardDTO> it=list.listIterator();
+	        Iterator<ReviewsDTO> it=list.listIterator();
 	        while(it.hasNext()) {
-	            BoardDTO dto = (BoardDTO)it.next();
+	            ReviewsDTO dto = (ReviewsDTO)it.next();
 	            listNum = dataCount - (start + n - 1);
 	            dto.setListNum(listNum);
 	            n++;
@@ -156,7 +156,7 @@ public class BoardServlet extends HttpServlet {
 						req, pathname, maxSize, encType, 
 						new  DefaultFileRenamePolicy());
 	
-				BoardDTO dto=new BoardDTO();
+				ReviewsDTO dto=new ReviewsDTO();
 				
 				dto.setUserId(info.getUserId());
 				dto.setSubject(mreq.getParameter("subject"));
@@ -201,7 +201,7 @@ public class BoardServlet extends HttpServlet {
 			dao.updateHitCount(num);
 			
 			// 게시물 읽기
-			BoardDTO dto = dao.readBoard(num);
+			ReviewsDTO dto = dao.readBoard(num);
 			if(dto == null) {
 				resp.sendRedirect(cp+"/board/list.do?pageNum="+pageNum);
 				return;
@@ -211,8 +211,8 @@ public class BoardServlet extends HttpServlet {
 			dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
 			
 			// 이전글/다음글
-			BoardDTO preDto = dao.preReadBoard(searchKey, searchValue, dto.getGroupNum(), dto.getOrderNo());
-	        BoardDTO nextDto = dao.nextReadBoard(searchKey, searchValue, dto.getGroupNum(), dto.getOrderNo());
+			ReviewsDTO preDto = dao.preReadBoard(searchKey, searchValue, dto.getGroupNum(), dto.getOrderNo());
+	        ReviewsDTO nextDto = dao.nextReadBoard(searchKey, searchValue, dto.getGroupNum(), dto.getOrderNo());
 			
 			String params = "pageNum="+pageNum;
 			if(!searchValue.equals("")) {
@@ -235,7 +235,7 @@ public class BoardServlet extends HttpServlet {
 			int num=Integer.parseInt(req.getParameter("num"));
 			String pageNum=req.getParameter("pageNum");
 			
-			BoardDTO dto=dao.readBoard(num);
+			ReviewsDTO dto=dao.readBoard(num);
 			if(dto==null) { // 게시물이 없으면 리스트로
 				resp.sendRedirect(cp+
 						"/board/list.do?pageNum=pageNum");
@@ -270,7 +270,7 @@ public class BoardServlet extends HttpServlet {
 	
 				pageNum=mreq.getParameter("pageNum");
 				
-				BoardDTO dto=new BoardDTO();
+				ReviewsDTO dto=new ReviewsDTO();
 				
 				dto.setUserId(info.getUserId());
 				dto.setSubject(mreq.getParameter("subject"));
@@ -313,7 +313,7 @@ public class BoardServlet extends HttpServlet {
 			int num=Integer.parseInt(	req.getParameter("num"));
 			String pageNum=req.getParameter("pageNum");
 			
-			BoardDTO dto=dao.readBoard(num);
+			ReviewsDTO dto=dao.readBoard(num);
 			if(dto==null || ! dto.getUserId().equals(info.getUserId())) {
 				resp.sendRedirect(cp+	"/board/list.do?pageNum="+pageNum);
 				return;
@@ -341,13 +341,13 @@ public class BoardServlet extends HttpServlet {
 				String pageNum=mreq.getParameter("pageNum");
 				int num=Integer.parseInt(mreq.getParameter("num"));
 			
-				BoardDTO vo=dao.readBoard(num);
+				ReviewsDTO vo=dao.readBoard(num);
 				if(vo==null || ! info.getUserId().equals(vo.getUserId())) {
 					resp.sendRedirect(cp+"/board/list.do?pageNum="+pageNum);
 					return;
 				}
 			
-				BoardDTO dto=new BoardDTO();
+				ReviewsDTO dto=new ReviewsDTO();
 				dto.setNum(num);
 				dto.setSubject(mreq.getParameter("subject"));
 				dto.setContent(mreq.getParameter("content"));
@@ -382,7 +382,7 @@ public class BoardServlet extends HttpServlet {
 			int num=Integer.parseInt(	req.getParameter("num"));
 			String pageNum=req.getParameter("pageNum");
 			
-			BoardDTO dto=dao.readBoard(num);
+			ReviewsDTO dto=dao.readBoard(num);
 			if(dto!=null) {
 				if(dto.getSaveFileName()!=null) {
 					FileManager fm=new FileManager();

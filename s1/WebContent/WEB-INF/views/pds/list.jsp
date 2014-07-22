@@ -83,6 +83,10 @@ function searchList() {
 		
 		<table width="600" border="0" cellpadding="0" cellspacing="0" style="margin: 0px auto;">
 		   <tr height="3" bgcolor="#507CD1"><td colspan="3"></td></tr>
+		   
+		   
+		   
+		   <!-- 내용 표현 -->
 
        <c:forEach var="dto" items="${list }">
 
@@ -95,7 +99,7 @@ function searchList() {
 		 
 		   <tr height="25">
 			   <td width="160" align="center" rowspan="5">
-				   <img src="<%=cp%>/uploads/${dto.imageFileName}" border="0" width="140" height="100"/>
+				   <img src="<%=cp%>/uploads/${dto.originalFileName}" border="0" width="140" height="100"/>
 			   </td>
 			   <td width="220" align="left">
 				   카테고리 | ${dto.category}
