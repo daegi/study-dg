@@ -10,6 +10,8 @@ public interface ScoreDAO {
 
 	public int deleteScore(String hak);
 
+	public int checkDelete(String hak);
+
 	public Score readScore(String hak);
 
 	public List<Score> listScore(Map<String, Object> map);

@@ -91,4 +91,9 @@ public class ScoreDaoImple implements ScoreDAO {
 		return result;
 	}
 
+	@Override
+	public int checkDelete(String hak) {
+		return 0;
+	}
+
 }
