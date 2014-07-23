@@ -1,8 +1,11 @@
 package com.demo3;
 
 public class Demo3 {
-	String name, birth, bobby, favor, gender;
-	int age;
+	private String name, birth;
+	private int age;
+	private String gender;
+	private String[] hobbys;
+	private String[] types;
 
 	public String getName() {
 		return name;
@@ -20,20 +23,12 @@ public class Demo3 {
 		this.birth = birth;
 	}
 
-	public String getBobby() {
-		return bobby;
+	public int getAge() {
+		return age;
 	}
 
-	public void setBobby(String bobby) {
-		this.bobby = bobby;
-	}
-
-	public String getFavor() {
-		return favor;
-	}
-
-	public void setFavor(String favor) {
-		this.favor = favor;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public String getGender() {
@@ -44,12 +39,20 @@ public class Demo3 {
 		this.gender = gender;
 	}
 
-	public int getAge() {
-		return age;
+	public String[] getHobbys() {
+		return hobbys;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setHobbys(String[] hobbys) {
+		this.hobbys = hobbys;
+	}
+
+	public String[] getTypes() {
+		return types;
+	}
+
+	public void setTypes(String[] types) {
+		this.types = types;
 	}
 
 }

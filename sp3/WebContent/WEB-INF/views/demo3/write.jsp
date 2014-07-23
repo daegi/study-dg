@@ -26,39 +26,33 @@
 				<td>생년월일</td>
 				<td><input type="text" name="birth"></td>
 			</tr>
-			
+
 			<tr>
 				<td>성별</td>
-				<td>
-				<input type="radio" name="gender" value="남자">남자
-				<input type="radio" name="gender" value="여자">여자
-				</td>
+				<td><input type="radio" name="gender" value="남자">남자 <input
+					type="radio" name="gender" value="여자">여자</td>
 			</tr>
-			
+
 			<tr>
 				<td>취미</td>
-				<td>
-				<input type="checkbox" name="hobby" value="게임">게임
-				<input type="checkbox" name="hobby" value="독서">독서
-				<input type="checkbox" name="hobby" value="영화감상">영화감상
-				<input type="checkbox" name="hobby" value="음악감상">음악감상
-				</td>
+				<td><input type="checkbox" name="hobbys" value="게임">게임
+					<input type="checkbox" name="hobbys" value="독서">독서 <input
+					type="checkbox" name="hobbys" value="영화감상">영화감상 <input
+					type="checkbox" name="hobbys" value="음악감상">음악감상</td>
 			</tr>
-			
+
 			<tr>
 				<td>이상형</td>
-				<td>
-				<input type="checkbox" name="favor" value="수지">수지
-				<input type="checkbox" name="favor" value="오나미">오나미
-				<input type="checkbox" name="favor" value="헤미">혜미
-				<input type="checkbox" name="favor" value="유진">유진
-				</td>
+				<td><input type="checkbox" name="types" value="수지">수지 <input
+					type="checkbox" name="types" value="오나미">오나미 <input
+					type="checkbox" name="types" value="헤미">혜미 <input
+					type="checkbox" name="types" value="유진">유진</td>
 			</tr>
-			
+
 			<tr>
-			<td><input type="submit" value="보내기"></td>
+				<td><input type="submit" value="보내기"></td>
 			</tr>
-			
+
 		</table>
 
 	</form>

@@ -1,7 +1,5 @@
 package com.demo3;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,19 +15,12 @@ public class DemoController {
 	}
 
 	@RequestMapping(value = "/demo3/result", method = RequestMethod.POST)
-	public String submit() throws Exception {
+	public ModelAndView submit(Demo3 d3) throws Exception {
 
-		// 리스트로 받는다.
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("demo3/result");
 
-		Demo3 demo3 = new Demo3();
+		return mav;
 
-		demo3.getAge();
-		demo3.getBirth();
-		demo3.getBobby();
-		demo3.getFavor();
-		demo3.getGender();
-		demo3.getName();
-
-		
 	}
 }
