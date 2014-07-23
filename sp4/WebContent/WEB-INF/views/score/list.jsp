@@ -23,13 +23,13 @@ body {
 
 <script type="text/javascript">
 
-function deleteEvent() {
+/* function deleteEvent() {
 	if(confim("정말 삭제 하시겠습니까?") == true){
 		document.forms[0].submit();
 	}else{
 		return;
 	}
-}
+} */
 
 
 	function check() {
@@ -113,8 +113,8 @@ function deleteEvent() {
 					<td align="center"><input type="button" value="수정"
 						onclick="javascript:location.href='<%=cp%>/score/update.action?hak=${dto.hak}&pageNum=${pageNum}'">
 						<input type="button" value="삭제"
-						onclick="javascript:delete_event();"></td>
-					<%-- onclick="javascript:location.href='<%=cp%>/score/delete.action?hak=${dto.hak}' --%>
+						onclick="javascript:location.href='<%=cp%>/score/delete.action?hak=${dto.hak}'"></td>
+					
 				</tr>
 			</c:forEach>
 		</table>
