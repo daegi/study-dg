@@ -3,9 +3,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
 	<insert id="insertBoard" parameterType="com.sp.bbs.Board">
-		insert into bbs(num, name, subject, content, pwd, ipAddr, hitCount)
-		values(seq_bbs.nextval, 
-		#{name}, #{subject}, #{content}, #{pwd}, #{ipAddr},0)
+		INSERT INTO bbs (num,
+		name,
+		subject,
+		content,
+		pwd,
+		ipAddr,
+		hitCount)
+		VALUES (seq_bbs.NEXTVAL,
+		#{name},
+		#{subject},
+		#{content},
+		#{pwd},
+		#{ipAddr},
+		0)
 	</insert>
 
+	<!-- <select id="listBoard" parameterType="String" resultType="com.sp.bbs.board"> 
+		SELECT * FROM (SELECT ROW_NUMBER () OVER (ORDER BY num DESC) rnum, name, 
+		subject, content, pwd, ipAddr, hitCount, TO_CHAR (created, 'yyyy-MM-dd') 
+		AS created FROM bbs) bbs <![CDATA[ WHERE rnum >=#{start} AND rnum <=#{end} 
+		]]> ORDER BY rnum DESC; </select> -->
 </mapper>

@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 		int result = 0;
 
 		try {
-			result = dao.insertData("bbs.inserBoard", dto);
+			result = dao.insertData("bbs.insertBoard", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

@@ -10,52 +10,47 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-	function sendBoard() {
-		var f = document.createdFrom;
-
-		var str = f.subject.value;
-		if (!str) {
-			alert("\n제목을 입력하세요. ");
+	function check() {
+		var f = document.forms[0];
+		
+		if(!f.subject.value){
+			alert("제목을 입력하세요");
 			f.subject.focus();
 			return false;
 		}
-		f.subject.value = str;
-
-		str = f.name.value;
-		if (!str) {
-			alert("이름을 입력하세요. ");
-			f.name.focus();
-			return false;
-		}
-		f.name.value = str;
-
-		str = f.content.value;
-		if (!str) {
-			alert("내용을 입력하세요. ");
-			f.content.focus();
-			return false;
-		}
-		f.content.value = str;
-
-		str = f.password.value;
-		if (!str) {
-			alert("비밀번호를 입력하세요. ");
-			f.password.focus();
-			return false;
-		}
-		f.password.value = str;
 		
+		if(!f.name.value){
+			alert("이름을 입력하세요");
+			f.subject.focus();
+			return false;
+		}
+		
+		if(!f.subject.value){
+			alert("내용을 입력하세요");
+			f.subject.focus();
+			return false;
+		}
+		
+		if(!f.subject.value){
+			alert("패스워드를 입력 하세요");
+			f.subject.focus();
+			return false;
+		}
+				
+		f.action="<%=cp%>/bbs/created.action";
+		
+		<%-- 
 			// 자바스크립트에서 EL 표현식사용가능
     	var mode="${mode}"; 
     	
     	if(mode=="created"){
-        	f.action = "<%=cp%>/board/.action";
+        	f.action = "<%=cp%>/bbs/created.action";
         	f.submit();
     	}else if(mode=="update"){
-        	f.action = "<%=cp%>/board/.action";
+        	f.action = "<%=cp%>/bbs/update.action";
         	f.submit();
     	}
-		// image 버튼, submit은 submit() 메소드 호출하면 두번전송
+		// image 버튼, submit은 submit() 메소드 호출하면 두번전송 --%>
 		return true;
 	}
 </script>
@@ -72,8 +67,7 @@
 		</tr>
 	</table>
 
-	<form action="" method="post" name="createdFrom"
-		onsubmit="return sendBoard();">
+	<form method="post" onsubmit="return check();">
 
 		<table width="700" style="margin: 0px auto;" cellpadding="0"
 			cellspacing="1">
@@ -83,7 +77,7 @@
 			<tr height="25">
 				<td width="100" align="center" bgcolor="#e4e4e4">제목</td>
 				<td width="400" align="left" style="padding-left: 10px;"><input
-					type="text" name="subject" size="75" maxlength="75"></td>
+					type="text" name="subject" size="75"></td>
 			</tr>
 			<tr height="1">
 				<td colspan="2" bgcolor="#cccccc"></td>
@@ -110,15 +104,15 @@
 			<tr height="25">
 				<td width="100" align="center" bgcolor="#e4e4e4">비밀번호</td>
 				<td width="400" align="left" style="padding-left: 10px;"><input
-					type="text" name="password"></td>
+					type="password" name="pwd"></td>
 			</tr>
 			<tr height="1">
 				<td colspan="2" bgcolor="#cccccc"></td>
 			</tr>
 			<tr height="30">
-				<td colspan="2" align="center"><input type="button"
-					value="등록하기" onclick="sendBoard()"> <input type="reset"
-					value="다시입력"> <input type="button" value="등록취소"
+				<td colspan="2" align="center"><input type="submit"
+					value="등록하기"> <input type="reset" value="다시입력"> <input
+					type="button" value="등록취소"
 					onclick="javascript:location.href='<%=cp%>/bbs/list.action';"></td>
 			</tr>
 		</table>
