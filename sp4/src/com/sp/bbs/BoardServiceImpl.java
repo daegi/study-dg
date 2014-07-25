@@ -12,7 +12,7 @@ import com.sp.common.dao.CommonDAO;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private CommonDAO dao;
-	
+
 	@Override
 	public int insertBoard(Board dto) {
 		int result = 0;
@@ -27,50 +27,111 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Object> listBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Object> list = null;
+
+		try {
+			list = dao.getListData("bbs.listBoard", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return list;
 	}
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+
+		try {
+			result = dao.getIntValue("bbs.dataCount", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return result;
 	}
 
 	@Override
 	public Board readBoard(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		Board dto = null;
+
+		try {
+
+			dto = (Board) dao.getReadData("bbs.readBoard", num);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
 	}
 
 	@Override
 	public int updateHitCount(int num) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+
+		try {
+			result = dao.updateData("bbs.updateHitCount", num);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return result;
 	}
 
 	@Override
 	public Board preReadBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		Board dto = null;
+
+		try {
+
+			dto = (Board) dao.getReadData("bbs.preReadBoard", map);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return dto;
 	}
 
 	@Override
-	public BoardService nextReadBoard(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+	public Board nextReadBoard(Map<String, Object> map) {
+		Board dto = null;
+
+		try {
+			dto = (Board) dao.getReadData("bbs.nextReadBoard", map);
+
+		} catch (Exception e) {
+			System.out.println(toString());
+		}
+
+		return dto;
 	}
 
 	@Override
 	public int updateBoard(Board dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+
+		try {
+			result = dao.updateData("bbs.updateBoard", dto);
+
+		} catch (Exception e) {
+			System.out.println(toString());
+		}
+
+		return result;
 	}
 
 	@Override
 	public int deleteBoard(int num) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		try {
+			result = dao.deleteData("bbs.deleteBoard", num);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 }

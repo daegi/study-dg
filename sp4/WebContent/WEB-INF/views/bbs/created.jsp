@@ -9,6 +9,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<style type="text/css">
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-size: 9pt;
+	font-family: 돋움;
+}
+
+a:link {
+	color: #007cd0;
+	text-decoration: none
+}
+
+a:visited {
+	color: #007cd0;
+	text-decoration: none
+}
+
+a:active {
+	color: #007cd0;
+	text-decoration: none
+}
+
+a:hover {
+	color: #0099ff;
+	text-decoration: none
+}
+</style>
+
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;
+	
+	f.action="<%=cp%>/bbs/list.action";
+		f.submit();
+	}
+</script>
+
 <script type="text/javascript">
 	function check() {
 		var f = document.forms[0];
@@ -40,7 +81,6 @@
 		f.action="<%=cp%>/bbs/created.action";
 		
 		<%-- 
-			// 자바스크립트에서 EL 표현식사용가능
     	var mode="${mode}"; 
     	
     	if(mode=="created"){
@@ -49,8 +89,7 @@
     	}else if(mode=="update"){
         	f.action = "<%=cp%>/bbs/update.action";
         	f.submit();
-    	}
-		// image 버튼, submit은 submit() 메소드 호출하면 두번전송 --%>
+    	} --%>
 		return true;
 	}
 </script>
@@ -68,9 +107,7 @@
 	</table>
 
 	<form method="post" onsubmit="return check();">
-
-		<table width="700" style="margin: 0px auto;" cellpadding="0"
-			cellspacing="1">
+		<table width="700" style="margin: 0px auto;" cellpadding="0" cellspacing="1">
 			<tr height="2">
 				<td colspan="2" bgcolor="#cccccc"></td>
 			</tr>
@@ -85,8 +122,8 @@
 
 			<tr height="25">
 				<td width="100" align="center" bgcolor="#e4e4e4">이름</td>
-				<td width="400" align="left" style="padding-left: 10px;"><input
-					type="text" name="name"></td>
+				<td width="400" align="left" style="padding-left: 10px;">
+				   <input type="text" name="name"></td>
 			</tr>
 			<tr height="1">
 				<td colspan="2" bgcolor="#cccccc"></td>
@@ -103,8 +140,9 @@
 
 			<tr height="25">
 				<td width="100" align="center" bgcolor="#e4e4e4">비밀번호</td>
-				<td width="400" align="left" style="padding-left: 10px;"><input
-					type="password" name="pwd"></td>
+				<td width="400" align="left" style="padding-left: 10px;">
+				  <input type="password" name="pwd">
+				 </td>
 			</tr>
 			<tr height="1">
 				<td colspan="2" bgcolor="#cccccc"></td>
@@ -113,7 +151,7 @@
 				<td colspan="2" align="center"><input type="submit"
 					value="등록하기"> <input type="reset" value="다시입력"> <input
 					type="button" value="등록취소"
-					onclick="javascript:location.href='<%=cp%>/bbs/list.action';"></td>
+					onclick="javascript:location.href='<%=cp%>/bbs/list.action?${params}';"></td>
 			</tr>
 		</table>
 	</form>
