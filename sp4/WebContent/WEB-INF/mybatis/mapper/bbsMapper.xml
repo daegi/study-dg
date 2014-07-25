@@ -84,8 +84,8 @@
 	<!-- 이전글 -->
 	<select id="preReadBoard" parameterType="map" resultType="com.sp.bbs.Board">
 		select tb.* from(
-			select num, subject from bbs
-			<where>
+		select num, subject from bbs
+		<where>
 			<if test="searchValue != null and searchValue != '' ">
 				<include refid="where-list" />
 			</if>
@@ -101,7 +101,7 @@
 	<select id="nextReadBoard" parameterType="map" resultType="com.sp.bbs.Board">
 
 		select tb.* from(
-			select num, subject from bbs
+		select num, subject from bbs
 		<where>
 			<if test="searchValue != null and searchValue != '' ">
 				<include refid="where-list" />
@@ -113,12 +113,23 @@
 		order by num desc
 		)tb where rownum=1
 	</select>
-	
+
 	<!-- 수정 -->
+	<update id="updateBoard" parameterType="com.sp.bbs.Board">
+
+		update bbs set
+		name=#{name},
+		subject=#{subject},content=#{content},pwd=#{pwd}
+		where
+		num=#{num}
+
+	</update>
+
 	<!-- 삭제 -->
-
-
-
+	<delete id="deleteBoard" parameterType="Integer" >
+		delete from bbs where
+		num=#{num}
+	</delete>
 </mapper>
 
 

@@ -113,6 +113,8 @@ public class BoardController {
 
 		ModelAndView mav = new ModelAndView("bbs/created");
 
+		mav.addObject("mode", "created");
+
 		return mav;
 	}
 
@@ -232,6 +234,28 @@ public class BoardController {
 
 			return "bbs/pwd";
 		}
-		return "bbs/list";
+
+		if (mode.equals("delete")) {
+			service.deleteBoard(num);
+			return "redirect:/bbs/list.action?pageNum=" + pageNum
+					+ "&numPerPage" + numPerPage;
+
+		}
+
+		req.setAttribute("dto", dto);
+		req.setAttribute("mode", "update");
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("numPerPage", numPerPage);
+
+		return "bbs/created";
+	}
+
+	public String updateSubmit(Board dto, String pageNum, String numPerPage)
+			throws Exception {
+
+		service.updateBoard(dto);
+
+		return "redirect:/bbs/list.action?pageNum=" + pageNum + "&numPerPage"
+				+ numPerPage;
 	}
 }

@@ -46,7 +46,7 @@ a:hover {
 	<table width="300" style="margin: 0px auto; margin-top: 20px;">
 		<tr height="50">
 			<td align="center" colspan="2"
-				style="font-size: 20pt; font-family: 돋움; font-weight: bold;">글쓰기</td>
+				style="font-size: 20pt; font-family: 돋움; font-weight: bold;">패스워드 확인</td>
 		</tr>
 		<tr>
 			<td></td>
